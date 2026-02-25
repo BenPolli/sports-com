@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sports CRM</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #07070d;
+  --surface: #0e0e18;
+  --surface2: #16161f;
+  --surface3: #1e1e2a;
+  --border: #ffffff0c;
+  --border2: #ffffff18;
+  --accent: #00e5a0;
+  --accent2: #4d6cfa;
+  --accent3: #ff6b6b;
+  --accent4: #ffd166;
+  --text: #eeeef5;
+  --text2: #9999b0;
+  --muted: #55556a;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 2px; }
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 28px;
+  height: 58px;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+  flex-shrink: 0;
+  z-index: 100;
+}
+
+.logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 20px;
+  letter-spacing: 4px;
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-pulse {
+  width: 7px; height: 7px;
+  background: var(--accent);
+  border-radius: 50%;
+  animation: pulse 2.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 #00e5a060; }
+  50% { opacity: 0.5; box-shadow: 0 0 0 6px #00e5a000; }
+}
+
+.nav-tabs {
+  display: flex;
+  gap: 4px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 4px;
+}
+
+.nav-tab {
+  padding: 7px 22px;
+  border-radius: 7px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: var(--text2);
+  border: none;
+  background: none;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.nav-tab.active { background: var(--accent); color: #000; font-weight: 600; }
+.nav-tab:not(.active):hover { color: var(--text); background: var(--surface3); }
+
+.topbar-right { display: flex; align-items: center; gap: 10px; }
+
+.sync-btn {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: var(--surface2);
+  border: 1px solid var(--border2);
+  border-radius: 8px;
+  padding: 7px 14px;
+  color: var(--text2);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.sync-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+.icon-btn {
+  width: 34px; height: 34px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  color: var(--text2);
+  font-size: 15px;
+  transition: all 0.2s;
+}
+
+.icon-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+.view { display: none; flex: 1; overflow: hidden; flex-direction: column; }
+.view.active { display: flex; }
+
+/* ANALYTICS */
+.analytics-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 28px 32px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.hero-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.hero-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 28px 26px 22px;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.hero-card:hover { border-color: var(--border2); transform: translateY(-2px); }
+
+.hero-card-accent {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--c, var(--accent));
+  opacity: 0.8;
+}
+
+.hero-card-bg {
+  position: absolute;
+  bottom: -10px; right: -10px;
+  font-size: 72px;
+  opacity: 0.05;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.hero-label {
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text2);
+  margin-bottom: 14px;
+  font-weight: 500;
+}
+
+.hero-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 60px;
+  letter-spacing: 2px;
+  line-height: 1;
+  color: var(--c, var(--accent));
+}
+
+.hero-sub { font-size: 12px; color: var(--muted); margin-top: 10px; }
+
+.mid-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 16px;
+}
+
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 24px;
+}
+
+.panel-title {
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text2);
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+.pipe-item { margin-bottom: 13px; }
+
+.pipe-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+.pipe-label {
+  font-size: 13px;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pipe-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+
+.pipe-num { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--text2); }
+
+.pipe-track { height: 5px; background: var(--surface3); border-radius: 3px; overflow: hidden; }
+
+.pipe-fill { height: 100%; border-radius: 3px; transition: width 1s cubic-bezier(0.4,0,0.2,1); }
+
+.sport-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.sport-row:last-child { border-bottom: none; }
+.sport-em { font-size: 24px; width: 36px; text-align: center; }
+.sport-info { flex: 1; }
+.sport-name { font-size: 14px; font-weight: 500; }
+.sport-leagues-txt { font-size: 11px; color: var(--muted); margin-top: 1px; }
+.sport-count { font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 1px; color: var(--accent); text-align: right; }
+.sport-sub { font-size: 10px; color: var(--muted); text-align: right; }
+
+.act-item { display: flex; align-items: flex-start; gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--border); }
+.act-item:last-child { border-bottom: none; }
+.act-dot { width: 7px; height: 7px; border-radius: 50%; margin-top: 5px; flex-shrink: 0; }
+.act-text { font-size: 13px; color: var(--text); line-height: 1.4; flex: 1; }
+.act-text strong { color: var(--accent); font-weight: 500; }
+.act-meta { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+.bot-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 16px; }
+
+.mini-table { width: 100%; border-collapse: collapse; }
+
+.mini-table th {
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: 0 0 10px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  font-weight: 500;
+}
+
+.mini-table th:last-child, .mini-table td:last-child { text-align: right; }
+
+.mini-table td {
+  padding: 10px 0;
+  font-size: 13px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+  vertical-align: middle;
+}
+
+.mini-table tr:last-child td { border-bottom: none; }
+.mini-table tr { transition: background 0.1s; cursor: pointer; }
+.mini-table tr:hover td { color: var(--accent); }
+.rank-num { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); width: 24px; }
+.val-green { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--accent); }
+
+.val-center { text-align: center; padding: 8px 0 20px; }
+.val-big { font-family: 'Bebas Neue', sans-serif; font-size: 56px; letter-spacing: 2px; color: var(--accent); line-height: 1; }
+.val-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-top: 6px; }
+
+.val-item { display: flex; justify-content: space-between; align-items: center; padding: 9px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
+.val-item:last-child { border-bottom: none; }
+.val-item-label { color: var(--text2); }
+.val-item-val { font-family: 'DM Mono', monospace; font-size: 12px; }
+
+/* DATABASE */
+.db-layout { display: flex; flex: 1; overflow: hidden; }
+
+.sidebar {
+  width: 258px;
+  flex-shrink: 0;
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.sidebar-head { padding: 14px 16px 12px; border-bottom: 1px solid var(--border); }
+.sidebar-lbl { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; font-weight: 500; }
+.sidebar-search-wrap { position: relative; }
+
+.sidebar-search {
+  width: 100%;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  padding: 7px 10px 7px 28px;
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.sidebar-search:focus { border-color: var(--accent); }
+.ss-icon { position: absolute; left: 9px; top: 50%; transform: translateY(-50%); color: var(--muted); font-size: 12px; pointer-events: none; }
+.sidebar-list { flex: 1; overflow-y: auto; padding: 6px 0; }
+
+.l-item { display: flex; align-items: center; gap: 8px; padding: 9px 16px; cursor: pointer; transition: all 0.15s; border-left: 3px solid transparent; }
+.l-item:hover { background: var(--surface2); }
+.l-item.active { background: var(--surface2); border-left-color: var(--accent); }
+.l-name { font-size: 12px; color: var(--text2); flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 1.35; }
+.l-item.active .l-name { color: var(--accent); font-weight: 500; }
+.l-count { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); background: var(--surface3); border-radius: 8px; padding: 1px 7px; flex-shrink: 0; }
+.l-item.active .l-count { background: #00e5a015; color: var(--accent); }
+
+.db-main { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+
+.db-header { padding: 16px 24px 14px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
+.db-title { font-family: 'Bebas Neue', sans-serif; font-size: 24px; letter-spacing: 2px; }
+.db-meta-row { display: flex; gap: 16px; margin-top: 3px; }
+.db-meta-item { font-size: 11px; color: var(--muted); }
+.db-meta-item strong { color: var(--text2); }
+.db-actions { display: flex; gap: 8px; align-items: center; }
+
+.srch-wrap { position: relative; }
+.srch-input { background: var(--surface2); border: 1px solid var(--border); border-radius: 7px; padding: 7px 12px 7px 30px; color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 12px; width: 200px; outline: none; transition: border-color 0.2s; }
+.srch-input:focus { border-color: var(--accent); }
+.srch-icon { position: absolute; left: 9px; top: 50%; transform: translateY(-50%); color: var(--muted); font-size: 13px; pointer-events: none; }
+
+.fil-btn { background: var(--surface2); border: 1px solid var(--border); border-radius: 7px; padding: 7px 13px; color: var(--text2); font-family: 'DM Sans', sans-serif; font-size: 12px; cursor: pointer; transition: all 0.15s; white-space: nowrap; }
+.fil-btn:hover { border-color: var(--border2); color: var(--text); }
+.fil-btn.on { border-color: var(--accent); color: var(--accent); background: #00e5a010; }
+
+.table-wrap { flex: 1; overflow: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+
+thead th { position: sticky; top: 0; background: var(--surface); padding: 11px 16px; text-align: left; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); border-bottom: 1px solid var(--border); white-space: nowrap; z-index: 10; font-weight: 500; }
+thead th:first-child { padding-left: 24px; }
+tbody tr { border-bottom: 1px solid var(--border); transition: background 0.1s; cursor: pointer; }
+tbody tr:hover { background: var(--surface2); }
+tbody td { padding: 13px 16px; vertical-align: middle; }
+tbody td:first-child { padding-left: 24px; }
+
+.club-nm { font-weight: 500; color: var(--text); }
+.contact-cell { display: flex; align-items: center; gap: 8px; }
+.avatar { width: 26px; height: 26px; border-radius: 50%; background: linear-gradient(135deg, var(--accent2), var(--accent)); display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; color: #fff; flex-shrink: 0; }
+.email-lnk { color: var(--accent2); text-decoration: none; font-family: 'DM Mono', monospace; font-size: 11px; }
+.email-lnk:hover { color: var(--accent); }
+.phone-txt { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--text2); }
+.est-v { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--accent); font-weight: 500; }
+
+.stg { display: inline-flex; align-items: center; gap: 5px; border-radius: 20px; padding: 3px 10px; font-size: 11px; font-weight: 500; white-space: nowrap; }
+.stg::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: currentColor; }
+.s0 { background:#ffffff06; color:var(--muted); border:1px solid #ffffff0e; }
+.s1 { background:#4d6cfa18; color:#7b96ff; border:1px solid #4d6cfa30; }
+.s2 { background:#ffd16618; color:var(--accent4); border:1px solid #ffd16630; }
+.s3 { background:#c44dfa18; color:#d97bff; border:1px solid #c44dfa30; }
+.s4 { background:#00e5a018; color:var(--accent); border:1px solid #00e5a030; }
+.s5 { background:#00b37718; color:#00cc88; border:1px solid #00b37730; }
+.s6 { background:#00e5a025; color:var(--accent); border:1px solid #00e5a045; }
+.s7 { background:#00e5a035; color:var(--accent); border:1px solid #00e5a055; font-weight:700; }
+.s8 { background:#ff6b6b18; color:var(--accent3); border:1px solid #ff6b6b30; }
+.s9 { background:#ff444418; color:#ff7777; border:1px solid #ff444430; }
+.s10 { background:#ffffff04; color:#33334a; border:1px solid #ffffff08; }
+
+.db-footer { padding: 8px 24px; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
+.footer-txt { font-size: 11px; color: var(--muted); font-family: 'DM Mono', monospace; }
+
+.detail-panel { position: fixed; right: 0; top: 58px; bottom: 0; width: 360px; background: var(--surface); border-left: 1px solid var(--border); z-index: 200; transform: translateX(100%); transition: transform 0.25s cubic-bezier(0.4,0,0.2,1); overflow-y: auto; }
+.detail-panel.open { transform: translateX(0); }
+
+.det-head { padding: 20px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: flex-start; }
+.det-club { font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 2px; }
+.det-league { font-size: 12px; color: var(--muted); margin-top: 2px; }
+.close-x { background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--muted); font-size: 14px; transition: all 0.2s; flex-shrink: 0; }
+.close-x:hover { color: var(--text); border-color: var(--border2); }
+
+.det-section { padding: 16px 20px; border-bottom: 1px solid var(--border); }
+.det-section-title { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
+.det-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; gap: 10px; }
+.det-key { font-size: 12px; color: var(--muted); flex-shrink: 0; }
+.det-val { font-size: 12px; color: var(--text); text-align: right; word-break: break-all; }
+.det-val a { color: var(--accent2); text-decoration: none; }
+.det-val a:hover { color: var(--accent); }
+
+.stage-sel { width: 100%; background: var(--surface2); border: 1px solid var(--border); border-radius: 7px; padding: 9px 12px; color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 13px; outline: none; cursor: pointer; transition: border-color 0.2s; }
+.stage-sel:focus { border-color: var(--accent); }
+
+.center-state { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; gap: 12px; color: var(--muted); text-align: center; padding: 40px; }
+.state-icon { font-size: 40px; opacity: 0.2; }
+.state-title { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 2px; color: var(--muted); }
+.state-sub { font-size: 13px; line-height: 1.6; max-width: 280px; }
+
+.spinner { width: 28px; height: 28px; border: 2px solid var(--border2); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.75s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.cfg-overlay { position: fixed; inset: 0; background: #000000d0; display: flex; align-items: center; justify-content: center; z-index: 1000; backdrop-filter: blur(6px); }
+.cfg-box { background: var(--surface); border: 1px solid var(--border2); border-radius: 18px; padding: 36px; width: 460px; max-width: 92vw; }
+.cfg-title { font-family: 'Bebas Neue', sans-serif; font-size: 30px; letter-spacing: 3px; color: var(--accent); margin-bottom: 6px; }
+.cfg-sub { font-size: 13px; color: var(--text2); margin-bottom: 24px; line-height: 1.55; }
+.cfg-label { display: block; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+.cfg-input { width: 100%; background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; color: var(--text); font-family: 'DM Mono', monospace; font-size: 13px; outline: none; margin-bottom: 16px; transition: border-color 0.2s; }
+.cfg-input:focus { border-color: var(--accent); }
+.cfg-btn { width: 100%; background: var(--accent); color: #000; border: none; border-radius: 9px; padding: 13px; font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 3px; cursor: pointer; margin-top: 4px; transition: opacity 0.2s; }
+.cfg-btn:hover { opacity: 0.88; }
+.cfg-note { font-size: 11px; color: var(--muted); margin-top: 12px; text-align: center; }
+</style>
+</head>
+<body>
+
+<!-- CONFIG -->
+<div class="cfg-overlay" id="cfgOverlay">
+  <div class="cfg-box">
+    <div class="cfg-title">⚡ Sports CRM</div>
+    <div class="cfg-sub">Connect your Airtable database. Your token is stored locally in your browser and never shared.</div>
+    <label class="cfg-label">Personal Access Token</label>
+    <input class="cfg-input" id="cfgToken" type="password" placeholder="pat...">
+    <label class="cfg-label">Base ID</label>
+    <input class="cfg-input" id="cfgBase" placeholder="appXXXXXXXXXXXXXX" value="appLyjsSbOppAyR6I">
+    <label class="cfg-label">Table ID</label>
+    <input class="cfg-input" id="cfgTable" placeholder="tblXXXXXXXXXXXXXX" value="tblYsO9wdvPMPs94P">
+    <button class="cfg-btn" onclick="saveConfig()">CONNECT DATABASE</button>
+    <div class="cfg-note">Token stored in your browser only — never sent to any external server.</div>
+  </div>
+</div>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="logo"><div class="logo-pulse"></div>SPORTS CRM</div>
+  <div class="nav-tabs">
+    <button class="nav-tab active" onclick="switchView('analytics')">📊 Overview</button>
+    <button class="nav-tab" onclick="switchView('database')">🗄 Database</button>
+  </div>
+  <div class="topbar-right">
+    <button class="sync-btn" onclick="refreshData()">↻ Sync Data</button>
+    <div class="icon-btn" onclick="showConfig()" title="Settings">⚙</div>
+  </div>
+</div>
+
+<!-- ANALYTICS VIEW -->
+<div class="view active" id="view-analytics">
+  <div class="analytics-body">
+    <div class="hero-row">
+      <div class="hero-card" style="--c:var(--accent)">
+        <div class="hero-card-accent"></div>
+        <div class="hero-card-bg">🏟</div>
+        <div class="hero-label">Total Clubs</div>
+        <div class="hero-num" id="hClubs">—</div>
+        <div class="hero-sub" id="hClubsSub">loading...</div>
+      </div>
+      <div class="hero-card" style="--c:var(--accent2)">
+        <div class="hero-card-accent"></div>
+        <div class="hero-card-bg">🏆</div>
+        <div class="hero-label">Total Leagues</div>
+        <div class="hero-num" id="hLeagues">—</div>
+        <div class="hero-sub" id="hLeaguesSub">loading...</div>
+      </div>
+      <div class="hero-card" style="--c:var(--accent4)">
+        <div class="hero-card-accent"></div>
+        <div class="hero-card-bg">💰</div>
+        <div class="hero-label">Pipeline Value</div>
+        <div class="hero-num" id="hValue">—</div>
+        <div class="hero-sub">estimated total</div>
+      </div>
+      <div class="hero-card" style="--c:var(--accent3)">
+        <div class="hero-card-accent"></div>
+        <div class="hero-card-bg">🔥</div>
+        <div class="hero-label">Hot Leads</div>
+        <div class="hero-num" id="hHot">—</div>
+        <div class="hero-sub">interested or better</div>
+      </div>
+    </div>
+
+    <div class="mid-grid">
+      <div class="panel">
+        <div class="panel-title">Outreach Pipeline</div>
+        <div id="pipelineEl"></div>
+      </div>
+      <div class="panel">
+        <div class="panel-title">By Sport</div>
+        <div id="sportEl"></div>
+      </div>
+      <div class="panel">
+        <div class="panel-title">Recent Activity</div>
+        <div id="activityEl"></div>
+      </div>
+    </div>
+
+    <div class="bot-grid">
+      <div class="panel">
+        <div class="panel-title">Top Leagues by Club Count</div>
+        <table class="mini-table">
+          <thead>
+            <tr><th>#</th><th>League</th><th>Sport</th><th>Clubs</th><th>Est. Value</th></tr>
+          </thead>
+          <tbody id="topLeagues"></tbody>
+        </table>
+      </div>
+      <div class="panel">
+        <div class="panel-title">Value Breakdown</div>
+        <div class="val-center">
+          <div class="val-big" id="valBig">—</div>
+          <div class="val-label">Total Estimated Value</div>
+        </div>
+        <div id="valBreakdown"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DATABASE VIEW -->
+<div class="view" id="view-database">
+  <div class="db-layout">
+    <div class="sidebar">
+      <div class="sidebar-head">
+        <div class="sidebar-lbl">Leagues</div>
+        <div class="sidebar-search-wrap">
+          <span class="ss-icon">⌕</span>
+          <input class="sidebar-search" id="lSearch" placeholder="Filter leagues..." oninput="filterLeagues()">
+        </div>
+      </div>
+      <div class="sidebar-list" id="leagueList">
+        <div class="center-state"><div class="spinner"></div></div>
+      </div>
+    </div>
+
+    <div class="db-main">
+      <div class="db-header" id="dbHeader" style="display:none">
+        <div>
+          <div class="db-title" id="dbTitle">—</div>
+          <div class="db-meta-row">
+            <div class="db-meta-item">👥 <strong id="dbCount">—</strong> clubs</div>
+            <div class="db-meta-item" id="dbSport"></div>
+          </div>
+        </div>
+        <div class="db-actions">
+          <div class="srch-wrap">
+            <span class="srch-icon">⌕</span>
+            <input class="srch-input" id="tSearch" placeholder="Search clubs..." oninput="renderTable()">
+          </div>
+          <button class="fil-btn on" id="fAll" onclick="setFilter('all')">All</button>
+          <button class="fil-btn" id="fContacted" onclick="setFilter('contacted')">Contacted</button>
+          <button class="fil-btn" id="fHot" onclick="setFilter('hot')">🔥 Hot</button>
+        </div>
+      </div>
+
+      <div class="table-wrap" id="tableWrap">
+        <div class="center-state">
+          <div class="state-icon">👈</div>
+          <div class="state-title">Select a League</div>
+          <div class="state-sub">Choose a league from the sidebar to view its clubs, contacts and outreach status.</div>
+        </div>
+      </div>
+
+      <div class="db-footer">
+        <div class="footer-txt" id="footerTxt">Ready</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DETAIL PANEL -->
+<div class="detail-panel" id="detailPanel">
+  <div class="det-head">
+    <div>
+      <div class="det-club" id="detClub">—</div>
+      <div class="det-league" id="detLeague">—</div>
+    </div>
+    <div class="close-x" onclick="closeDetail()">✕</div>
+  </div>
+  <div id="detBody"></div>
+</div>
+
+<script>
+let CFG = { token: '', base: 'appLyjsSbOppAyR6I', table: 'tblYsO9wdvPMPs94P' };
+let ALL = [];
+let LEAGUES = {};
+let ACTIVE = null;
+let FILTER = 'all';
+
+// Exact stages matching Airtable
+const STAGES = [
+  'Not Contacted',
+  'Emailed',
+  'Followed Up',
+  'Responded',
+  'Interested',
+  'Meeting Booked',
+  'Proposal Sent',
+  'Won',
+  'Lost',
+  'Not Interested',
+  'Not Qualified'
+];
+
+const STAGE_COLORS = {
+  'Not Contacted': '#55556a',
+  'Emailed': '#7b96ff',
+  'Followed Up': '#ffd166',
+  'Responded': '#d97bff',
+  'Interested': '#00e5a0',
+  'Meeting Booked': '#00cc88',
+  'Proposal Sent': '#00e5a0',
+  'Won': '#00ff88',
+  'Lost': '#ff6b6b',
+  'Not Interested': '#ff7777',
+  'Not Qualified': '#33334a'
+};
+
+const STAGE_CLASS = {
+  'Not Contacted': 's0',
+  'Emailed': 's1',
+  'Followed Up': 's2',
+  'Responded': 's3',
+  'Interested': 's4',
+  'Meeting Booked': 's5',
+  'Proposal Sent': 's6',
+  'Won': 's7',
+  'Lost': 's8',
+  'Not Interested': 's9',
+  'Not Qualified': 's10',
+  'Not Ready': 's0'
+};
+
+function loadConfig() {
+  const s = localStorage.getItem('sportsCrmV4');
+  if (s) {
+    CFG = { ...CFG, ...JSON.parse(s) };
+    if (CFG.token) {
+      document.getElementById('cfgOverlay').style.display = 'none';
+      init();
+    }
+  }
+}
+
+function saveConfig() {
+  CFG.token = document.getElementById('cfgToken').value.trim();
+  CFG.base = document.getElementById('cfgBase').value.trim();
+  CFG.table = document.getElementById('cfgTable').value.trim();
+  if (!CFG.token) { alert('Please enter your Personal Access Token'); return; }
+  localStorage.setItem('sportsCrmV4', JSON.stringify(CFG));
+  document.getElementById('cfgOverlay').style.display = 'none';
+  init();
+}
+
+function showConfig() {
+  document.getElementById('cfgToken').value = CFG.token;
+  document.getElementById('cfgBase').value = CFG.base;
+  document.getElementById('cfgTable').value = CFG.table;
+  document.getElementById('cfgOverlay').style.display = 'flex';
+}
+
+function switchView(v) {
+  document.querySelectorAll('.view').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(el => el.classList.remove('active'));
+  document.getElementById('view-' + v).classList.add('active');
+  document.querySelectorAll('.nav-tab')[v === 'analytics' ? 0 : 1].classList.add('active');
+}
+
+async function fetchAll() {
+  let recs = [], offset = null;
+  do {
+    const url = `https://api.airtable.com/v0/${CFG.base}/${CFG.table}?pageSize=100${offset ? '&offset='+offset : ''}`;
+    const res = await fetch(url, { headers: { Authorization: `Bearer ${CFG.token}` } });
+    const data = await res.json();
+    if (data.error) throw new Error(data.error.message);
+    recs = recs.concat(data.records);
+    offset = data.offset;
+  } while (offset);
+  return recs;
+}
+
+async function init() {
+  setFooter('Loading data...');
+  try {
+    ALL = await fetchAll();
+    LEAGUES = {};
+    ALL.forEach(r => {
+      const l = r.fields['League Name'] || 'Unknown';
+      if (!LEAGUES[l]) LEAGUES[l] = [];
+      LEAGUES[l].push(r);
+    });
+    renderAnalytics();
+    renderLeagueList();
+    setFooter(`${ALL.length} clubs · ${Object.keys(LEAGUES).length} leagues`);
+  } catch(e) {
+    setFooter('Error: ' + e.message);
+    document.getElementById('leagueList').innerHTML = `<div style="padding:20px;color:var(--accent3);font-size:12px">Failed: ${e.message}</div>`;
+  }
+}
+
+async function refreshData() {
+  await init();
+  if (ACTIVE) renderTable();
+}
+
+function fmt(v) {
+  if (v >= 1000000) return '£' + (v/1000000).toFixed(1) + 'M';
+  if (v >= 1000) return '£' + Math.round(v/1000) + 'K';
+  return '£' + v;
+}
+
+function renderAnalytics() {
+  const total = ALL.length;
+  const leagueCount = Object.keys(LEAGUES).length;
+  const totalVal = ALL.reduce((s,r) => s + (r.fields['Est Value']||0), 0);
+  const hotCount = ALL.filter(r => ['Interested','Meeting Booked','Proposal Sent','Won'].includes(r.fields['Stage'])).length;
+
+  document.getElementById('hClubs').textContent = total.toLocaleString();
+  document.getElementById('hClubsSub').textContent = `across ${leagueCount} leagues`;
+  document.getElementById('hLeagues').textContent = leagueCount;
+  document.getElementById('hLeaguesSub').textContent = 'in database';
+  document.getElementById('hValue').textContent = fmt(totalVal);
+  document.getElementById('hHot').textContent = hotCount;
+  document.getElementById('valBig').textContent = fmt(totalVal);
+
+  // PIPELINE - exact Airtable stages
+  const counts = {};
+  ALL.forEach(r => { const s = r.fields['Stage'] || 'Not Contacted'; counts[s] = (counts[s]||0)+1; });
+
+  document.getElementById('pipelineEl').innerHTML = STAGES.map(stage => {
+    const n = counts[stage] || 0;
+    const pct = total > 0 ? (n/total*100) : 0;
+    const color = STAGE_COLORS[stage] || '#55556a';
+    return `<div class="pipe-item">
+      <div class="pipe-row">
+        <div class="pipe-label"><div class="pipe-dot" style="background:${color}"></div>${stage}</div>
+        <div class="pipe-num">${n}</div>
+      </div>
+      <div class="pipe-track"><div class="pipe-fill" style="width:${pct}%;background:${color}"></div></div>
+    </div>`;
+  }).join('');
+
+  // SPORTS
+  const sports = {};
+  ALL.forEach(r => {
+    const sp = r.fields['Sport'] || 'Football';
+    if (!sports[sp]) sports[sp] = { clubs: 0, leagues: new Set() };
+    sports[sp].clubs++;
+    if (r.fields['League Name']) sports[sp].leagues.add(r.fields['League Name']);
+  });
+
+  const emojis = { Football:'⚽', Rugby:'🏉', Cricket:'🏏', Tennis:'🎾', Basketball:'🏀', Hockey:'🏑', Netball:'🥅' };
+
+  document.getElementById('sportEl').innerHTML = Object.entries(sports)
+    .sort((a,b) => b[1].clubs - a[1].clubs)
+    .map(([sp, d]) => `
+      <div class="sport-row">
+        <div class="sport-em">${emojis[sp]||'🏆'}</div>
+        <div class="sport-info">
+          <div class="sport-name">${sp}</div>
+          <div class="sport-leagues-txt">${d.leagues.size} leagues</div>
+        </div>
+        <div>
+          <div class="sport-count">${d.clubs}</div>
+          <div class="sport-sub">clubs</div>
+        </div>
+      </div>
+    `).join('');
+
+  // ACTIVITY
+  const recent = [...ALL]
+    .filter(r => r.fields['Stage'] && r.fields['Stage'] !== 'Not Contacted')
+    .sort((a,b) => new Date(b.createdTime) - new Date(a.createdTime))
+    .slice(0, 7);
+
+  document.getElementById('activityEl').innerHTML = recent.length > 0
+    ? recent.map(r => `
+        <div class="act-item">
+          <div class="act-dot" style="background:${STAGE_COLORS[r.fields['Stage']]||'#55556a'}"></div>
+          <div class="act-text">
+            <strong>${r.fields['Club Name']||'—'}</strong> — ${r.fields['Stage']}
+            <div class="act-meta">${r.fields['League Name']||''}</div>
+          </div>
+        </div>
+      `).join('')
+    : '<div style="color:var(--muted);font-size:13px;padding:8px 0;line-height:1.6">No outreach activity yet. Start contacting clubs to see updates here.</div>';
+
+  // TOP LEAGUES
+  const topL = Object.entries(LEAGUES)
+    .map(([name, recs]) => ({
+      name,
+      count: recs.length,
+      sport: recs[0]?.fields['Sport'] || 'Football',
+      value: recs.reduce((s,r) => s+(r.fields['Est Value']||0),0)
+    }))
+    .sort((a,b) => b.count - a.count)
+    .slice(0, 8);
+
+  document.getElementById('topLeagues').innerHTML = topL.map((l,i) => `
+    <tr onclick="switchView('database');setTimeout(()=>selectLeague('${l.name.replace(/'/g,"\\'")}'),120)">
+      <td class="rank-num">${i+1}</td>
+      <td>${l.name}</td>
+      <td style="color:var(--muted);font-size:12px">${l.sport}</td>
+      <td style="font-family:'DM Mono',monospace;font-size:12px;color:var(--text2)">${l.count}</td>
+      <td class="val-green">${l.value>0 ? fmt(l.value) : '—'}</td>
+    </tr>
+  `).join('');
+
+  // VALUE BREAKDOWN
+  const wonV = ALL.filter(r=>r.fields['Stage']==='Won').reduce((s,r)=>s+(r.fields['Est Value']||0),0);
+  const hotV = ALL.filter(r=>['Interested','Meeting Booked','Proposal Sent'].includes(r.fields['Stage'])).reduce((s,r)=>s+(r.fields['Est Value']||0),0);
+  const pipeV = ALL.filter(r=>['Emailed','Followed Up','Responded'].includes(r.fields['Stage'])).reduce((s,r)=>s+(r.fields['Est Value']||0),0);
+  const untV = ALL.filter(r=>!r.fields['Stage']||r.fields['Stage']==='Not Contacted').reduce((s,r)=>s+(r.fields['Est Value']||0),0);
+
+  document.getElementById('valBreakdown').innerHTML = [
+    { label:'Won', val:wonV, color:'var(--accent)' },
+    { label:'Hot Leads', val:hotV, color:'var(--accent)' },
+    { label:'In Pipeline', val:pipeV, color:'#7b96ff' },
+    { label:'Untouched', val:untV, color:'var(--muted)' },
+  ].map(x => `
+    <div class="val-item">
+      <span class="val-item-label" style="color:${x.color}">${x.label}</span>
+      <span class="val-item-val" style="color:${x.color}">${x.val>0?fmt(x.val):'—'}</span>
+    </div>
+  `).join('');
+}
+
+// DATABASE
+function renderLeagueList(q='') {
+  const leagues = Object.keys(LEAGUES).sort();
+  const filtered = q ? leagues.filter(l=>l.toLowerCase().includes(q.toLowerCase())) : leagues;
+  const el = document.getElementById('leagueList');
+
+  if (!filtered.length) {
+    el.innerHTML = '<div style="padding:20px;color:var(--muted);font-size:12px;text-align:center">No leagues found</div>';
+    return;
+  }
+
+  el.innerHTML = filtered.map(l => `
+    <div class="l-item ${ACTIVE===l?'active':''}" onclick="selectLeague('${l.replace(/'/g,"\\'")}')">
+      <div class="l-name">${l}</div>
+      <div class="l-count">${LEAGUES[l].length}</div>
+    </div>
+  `).join('');
+}
+
+function filterLeagues() {
+  renderLeagueList(document.getElementById('lSearch').value);
+}
+
+function selectLeague(league) {
+  ACTIVE = league;
+  FILTER = 'all';
+  document.getElementById('dbHeader').style.display = 'flex';
+  document.getElementById('dbTitle').textContent = league;
+  document.getElementById('dbCount').textContent = LEAGUES[league]?.length || 0;
+  const sp = LEAGUES[league]?.[0]?.fields['Sport'];
+  document.getElementById('dbSport').textContent = sp ? `⚽ ${sp}` : '';
+  ['fAll','fContacted','fHot'].forEach(id => document.getElementById(id).classList.remove('on'));
+  document.getElementById('fAll').classList.add('on');
+  renderLeagueList(document.getElementById('lSearch').value);
+  renderTable();
+  closeDetail();
+}
+
+function setFilter(f) {
+  FILTER = f;
+  ['fAll','fContacted','fHot'].forEach(id => document.getElementById(id).classList.remove('on'));
+  document.getElementById(f==='all'?'fAll':f==='contacted'?'fContacted':'fHot').classList.add('on');
+  renderTable();
+}
+
+function renderTable() {
+  if (!ACTIVE) return;
+  let recs = [...(LEAGUES[ACTIVE]||[])];
+
+  if (FILTER==='contacted') recs = recs.filter(r=>['Emailed','Followed Up','Responded','Interested','Meeting Booked','Proposal Sent','Won'].includes(r.fields['Stage']));
+  if (FILTER==='hot') recs = recs.filter(r=>['Interested','Meeting Booked','Proposal Sent','Won'].includes(r.fields['Stage']));
+
+  const q = (document.getElementById('tSearch')?.value||'').toLowerCase();
+  if (q) recs = recs.filter(r => [r.fields['Club Name'],r.fields['Contact Name'],r.fields['Email'],r.fields['Number']].some(v=>v&&v.toLowerCase().includes(q)));
+
+  document.getElementById('dbCount').textContent = recs.length;
+  const wrap = document.getElementById('tableWrap');
+
+  if (!recs.length) {
+    wrap.innerHTML = `<div class="center-state"><div class="state-icon">🔍</div><div class="state-title">No Results</div><div class="state-sub">Try adjusting your search or filter.</div></div>`;
+    return;
+  }
+
+  wrap.innerHTML = `<table>
+    <thead><tr>
+      <th>Club</th><th>Contact</th><th>Email</th><th>Phone</th><th>Est. Value</th><th>Stage</th>
+    </tr></thead>
+    <tbody>
+      ${recs.map(r => {
+        const f = r.fields;
+        const stage = f['Stage']||'Not Contacted';
+        const val = f['Est Value'] ? '£'+Math.round(f['Est Value']).toLocaleString() : '—';
+        return `<tr onclick="showDetail('${r.id}')">
+          <td><div class="club-nm">${f['Club Name']||'—'}</div></td>
+          <td><div class="contact-cell"><div class="avatar">${initials(f['Contact Name'])}</div>${f['Contact Name']||'<span style="color:var(--muted)">—</span>'}</div></td>
+          <td>${f['Email']?`<a class="email-lnk" href="mailto:${f['Email']}" onclick="event.stopPropagation()">${f['Email']}</a>`:'<span style="color:var(--muted)">—</span>'}</td>
+          <td><span class="phone-txt">${f['Number']||'—'}</span></td>
+          <td><span class="est-v">${val}</span></td>
+          <td><span class="stg ${STAGE_CLASS[stage]||'s0'}">${stage}</span></td>
+        </tr>`;
+      }).join('')}
+    </tbody>
+  </table>`;
+
+  setFooter(`${recs.length} of ${LEAGUES[ACTIVE].length} clubs`);
+}
+
+function initials(n) {
+  if (!n) return '?';
+  return n.split(' ').map(x=>x[0]).join('').toUpperCase().slice(0,2);
+}
+
+function showDetail(id) {
+  const r = ALL.find(x=>x.id===id);
+  if (!r) return;
+  const f = r.fields;
+
+  document.getElementById('detClub').textContent = f['Club Name']||'—';
+  document.getElementById('detLeague').textContent = f['League Name']||'—';
+
+  document.getElementById('detBody').innerHTML = `
+    <div class="det-section">
+      <div class="det-section-title">Contact</div>
+      <div class="det-row"><span class="det-key">Name</span><span class="det-val">${f['Contact Name']||'—'}</span></div>
+      <div class="det-row"><span class="det-key">Role</span><span class="det-val">${f['Role']||'—'}</span></div>
+      <div class="det-row"><span class="det-key">Email</span><span class="det-val">${f['Email']?`<a href="mailto:${f['Email']}">${f['Email']}</a>`:'—'}</span></div>
+      <div class="det-row"><span class="det-key">Phone</span><span class="det-val">${f['Number']||'—'}</span></div>
+    </div>
+    <div class="det-section">
+      <div class="det-section-title">Club</div>
+      <div class="det-row"><span class="det-key">League</span><span class="det-val">${f['League Name']||'—'}</span></div>
+      <div class="det-row"><span class="det-key">Teams</span><span class="det-val">${f['Teams']||'—'}</span></div>
+      <div class="det-row"><span class="det-key">Est. Value</span><span class="det-val" style="color:var(--accent)">${f['Est Value']?'£'+Math.round(f['Est Value']).toLocaleString():'—'}</span></div>
+      ${f['LinkedIn']?`<div class="det-row"><span class="det-key">LinkedIn</span><span class="det-val"><a href="${f['LinkedIn']}" target="_blank">View →</a></span></div>`:''}
+    </div>
+    <div class="det-section">
+      <div class="det-section-title">Outreach Stage</div>
+      <select class="stage-sel" onchange="updateStage('${id}',this.value)">
+        ${STAGES.map(s=>`<option value="${s}"${f['Stage']===s?' selected':''}>${s}</option>`).join('')}
+      </select>
+    </div>
+    ${f['Notes']?`<div class="det-section"><div class="det-section-title">Notes</div><div style="font-size:13px;color:var(--text2);line-height:1.6">${f['Notes']}</div></div>`:''}
+  `;
+
+  document.getElementById('detailPanel').classList.add('open');
+}
+
+function closeDetail() {
+  document.getElementById('detailPanel').classList.remove('open');
+}
+
+async function updateStage(id, stage) {
+  try {
+    await fetch(`https://api.airtable.com/v0/${CFG.base}/${CFG.table}/${id}`, {
+      method: 'PATCH',
+      headers: { Authorization: `Bearer ${CFG.token}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ fields: { Stage: stage } })
+    });
+    const r = ALL.find(x=>x.id===id);
+    if (r) r.fields['Stage'] = stage;
+    renderTable();
+    renderAnalytics();
+    setFooter('Stage updated → ' + stage);
+  } catch(e) {
+    setFooter('Update failed');
+  }
+}
+
+function setFooter(msg) {
+  document.getElementById('footerTxt').textContent = msg;
+}
+
+loadConfig();
+</script>
+</body>
+</html>
