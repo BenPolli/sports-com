@@ -440,6 +440,80 @@ tbody td:first-child { padding-left: 24px; }
 .cfg-btn { width: 100%; background: var(--accent); color: #000; border: none; border-radius: 9px; padding: 13px; font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 3px; cursor: pointer; margin-top: 4px; transition: opacity 0.2s; }
 .cfg-btn:hover { opacity: 0.88; }
 .cfg-note { font-size: 11px; color: var(--muted); margin-top: 12px; text-align: center; }
+
+/* SCOUT AGENT */
+.scout-body { flex:1; overflow-y:auto; padding:28px 32px 40px; display:flex; flex-direction:column; gap:22px; }
+
+.scout-header { display:flex; justify-content:space-between; align-items:flex-start; gap:20px; flex-wrap:wrap; }
+.scout-title-row { display:flex; align-items:center; gap:14px; }
+.scout-icon { width:48px; height:48px; background:linear-gradient(135deg, var(--accent), var(--accent2)); border-radius:14px; display:flex; align-items:center; justify-content:center; font-size:22px; flex-shrink:0; }
+.scout-title { font-family:'Bebas Neue',sans-serif; font-size:28px; letter-spacing:3px; color:var(--text); }
+.scout-subtitle { font-size:12px; color:var(--text2); margin-top:2px; }
+.scout-status-badge { display:inline-flex; align-items:center; gap:6px; padding:5px 14px; border-radius:20px; font-size:11px; font-weight:600; letter-spacing:0.5px; }
+.scout-status-badge.idle { background:#ffffff08; color:var(--muted); border:1px solid var(--border); }
+.scout-status-badge.running { background:#00e5a018; color:var(--accent); border:1px solid #00e5a030; }
+.scout-status-badge.paused { background:#ffd16618; color:var(--accent4); border:1px solid #ffd16630; }
+.scout-status-badge.done { background:#4d6cfa18; color:var(--accent2); border:1px solid #4d6cfa30; }
+.scout-status-dot { width:7px; height:7px; border-radius:50%; }
+.scout-status-badge.idle .scout-status-dot { background:var(--muted); }
+.scout-status-badge.running .scout-status-dot { background:var(--accent); animation:pulse 1.5s infinite; }
+.scout-status-badge.paused .scout-status-dot { background:var(--accent4); }
+.scout-status-badge.done .scout-status-dot { background:var(--accent2); }
+
+.scout-controls { display:flex; gap:8px; align-items:center; }
+.scout-btn { padding:9px 22px; border-radius:9px; font-family:'DM Sans',sans-serif; font-size:13px; font-weight:600; cursor:pointer; border:none; transition:all 0.2s; }
+.scout-btn.primary { background:var(--accent); color:#000; }
+.scout-btn.primary:hover { opacity:0.85; }
+.scout-btn.secondary { background:var(--surface2); color:var(--text2); border:1px solid var(--border2); }
+.scout-btn.secondary:hover { color:var(--text); border-color:var(--accent); }
+.scout-btn.danger { background:var(--accent3); color:#fff; }
+.scout-btn:disabled { opacity:0.4; cursor:not-allowed; }
+
+.scout-stats-row { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:12px; }
+.scout-stat { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:16px 18px; }
+.scout-stat-label { font-size:10px; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); margin-bottom:6px; }
+.scout-stat-value { font-family:'Bebas Neue',sans-serif; font-size:26px; letter-spacing:1px; }
+.scout-stat-sub { font-size:11px; color:var(--text2); margin-top:2px; }
+
+.scout-progress-section { background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:20px 22px; }
+.scout-progress-title { font-size:10px; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); margin-bottom:14px; }
+.scout-progress-bar-wrap { background:var(--surface2); border-radius:6px; height:10px; overflow:hidden; margin-bottom:10px; }
+.scout-progress-bar { height:100%; background:linear-gradient(90deg, var(--accent), var(--accent2)); border-radius:6px; transition:width 0.4s ease; }
+.scout-progress-info { display:flex; justify-content:space-between; font-size:12px; color:var(--text2); }
+
+.scout-current { background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:16px 20px; min-height:52px; display:flex; align-items:center; gap:14px; }
+.scout-current-spinner { width:22px; height:22px; border:2px solid var(--border2); border-top-color:var(--accent); border-radius:50%; animation:spin 0.75s linear infinite; flex-shrink:0; }
+.scout-current-text { font-size:13px; color:var(--text2); line-height:1.5; }
+.scout-current-league { color:var(--text); font-weight:600; }
+
+.scout-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+@media(max-width:900px) { .scout-grid { grid-template-columns:1fr; } }
+
+.scout-panel { background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:18px 20px; max-height:400px; overflow-y:auto; }
+.scout-panel-title { font-size:10px; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); margin-bottom:12px; display:flex; justify-content:space-between; align-items:center; }
+.scout-panel-count { font-family:'DM Mono',monospace; font-size:11px; color:var(--text2); }
+
+.scout-log { font-family:'DM Mono',monospace; font-size:11px; line-height:1.8; color:var(--text2); }
+.scout-log-entry { padding:3px 0; border-bottom:1px solid var(--border); }
+.scout-log-time { color:var(--muted); margin-right:8px; }
+.scout-log-ok { color:var(--accent); }
+.scout-log-err { color:var(--accent3); }
+.scout-log-info { color:var(--accent2); }
+
+.scout-cat-row { display:flex; justify-content:space-between; align-items:center; padding:7px 0; border-bottom:1px solid var(--border); font-size:12px; }
+.scout-cat-name { color:var(--text); }
+.scout-cat-nums { display:flex; gap:14px; color:var(--text2); font-family:'DM Mono',monospace; font-size:11px; }
+.scout-cat-bar { height:3px; background:var(--surface2); border-radius:2px; margin-top:4px; }
+.scout-cat-bar-fill { height:100%; background:var(--accent); border-radius:2px; }
+
+.scout-filter-row { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:4px; }
+.scout-filter-btn { padding:5px 14px; border-radius:6px; font-size:11px; font-weight:500; cursor:pointer; border:1px solid var(--border); background:var(--surface2); color:var(--text2); transition:all 0.15s; font-family:'DM Sans',sans-serif; }
+.scout-filter-btn.active { background:var(--accent); color:#000; border-color:var(--accent); font-weight:600; }
+.scout-filter-btn:not(.active):hover { border-color:var(--accent); color:var(--text); }
+
+.scout-serp-input { display:flex; gap:8px; margin-bottom:8px; }
+.scout-serp-input input { flex:1; background:var(--surface2); border:1px solid var(--border); border-radius:8px; padding:8px 12px; color:var(--text); font-family:'DM Mono',monospace; font-size:12px; outline:none; }
+.scout-serp-input input:focus { border-color:var(--accent); }
 </style>
 </head>
 <body>
@@ -448,15 +522,15 @@ tbody td:first-child { padding-left: 24px; }
 <div class="cfg-overlay" id="cfgOverlay">
   <div class="cfg-box">
     <div class="cfg-title">⚡ Sports CRM</div>
-    <div class="cfg-sub">Connect your Airtable database. Your token is stored locally in your browser and never shared.</div>
-    <label class="cfg-label">Personal Access Token</label>
-    <input class="cfg-input" id="cfgToken" type="password" placeholder="pat...">
-    <label class="cfg-label">Base ID</label>
-    <input class="cfg-input" id="cfgBase" placeholder="appXXXXXXXXXXXXXX" value="appLyjsSbOppAyR6I">
-    <label class="cfg-label">Table ID</label>
-    <input class="cfg-input" id="cfgTable" placeholder="tblXXXXXXXXXXXXXX" value="tblYsO9wdvPMPs94P">
+    <div class="cfg-sub">Connect your Supabase database. Your credentials are stored locally in your browser and never shared.</div>
+    <label class="cfg-label">Supabase Project URL</label>
+    <input class="cfg-input" id="cfgUrl" placeholder="https://xxxxx.supabase.co" value="https://hbaxhbxqiwvmrtmwvmss.supabase.co">
+    <label class="cfg-label">Anon / Public Key</label>
+    <input class="cfg-input" id="cfgKey" type="password" placeholder="eyJ..." value="sb_publishable_x12l7gSwRtUTs8XPBcLm-A_mYmAKVIi">
+    <label class="cfg-label">Table Name</label>
+    <input class="cfg-input" id="cfgTable" placeholder="clubs" value="clubs">
     <button class="cfg-btn" onclick="saveConfig()">CONNECT DATABASE</button>
-    <div class="cfg-note">Token stored in your browser only — never sent to any external server.</div>
+    <div class="cfg-note">Credentials stored in your browser only — never sent to any external server.</div>
   </div>
 </div>
 
@@ -466,6 +540,7 @@ tbody td:first-child { padding-left: 24px; }
   <div class="nav-tabs">
     <button class="nav-tab active" onclick="switchView('analytics')">📊 Overview</button>
     <button class="nav-tab" onclick="switchView('database')">🗄 Database</button>
+    <button class="nav-tab" onclick="switchView('scout')">🔍 Scout Agent</button>
   </div>
   <div class="topbar-right">
     <button class="sync-btn" onclick="refreshData()">↻ Sync Data</button>
@@ -595,6 +670,131 @@ tbody td:first-child { padding-left: 24px; }
   </div>
 </div>
 
+<!-- SCOUT AGENT VIEW -->
+<div class="view" id="view-scout">
+  <div class="scout-body">
+
+    <!-- Header -->
+    <div class="scout-header">
+      <div>
+        <div class="scout-title-row">
+          <div class="scout-icon">🔍</div>
+          <div>
+            <div class="scout-title">SCOUT AGENT</div>
+            <div class="scout-subtitle">Club Discovery & Data Acquisition — Entire UK Football Pyramid</div>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px">
+        <div class="scout-status-badge idle" id="scoutBadge">
+          <div class="scout-status-dot"></div>
+          <span id="scoutBadgeText">IDLE</span>
+        </div>
+        <div class="scout-controls">
+          <button class="scout-btn secondary" onclick="scoutStats()" id="scoutStatsBtn">Stats</button>
+          <button class="scout-btn secondary" onclick="scoutPause()" id="scoutPauseBtn" disabled>Pause</button>
+          <button class="scout-btn secondary" onclick="scoutStop()" id="scoutStopBtn" disabled>Stop</button>
+          <button class="scout-btn primary" onclick="scoutStart()" id="scoutStartBtn">Start Scout</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SERP API Key -->
+    <div class="scout-serp-input">
+      <input type="password" id="scoutSerpKey" placeholder="SERP API Key (from serpapi.com)">
+      <button class="scout-btn secondary" onclick="saveSerpKey()">Save Key</button>
+    </div>
+
+    <!-- Category Filters -->
+    <div class="scout-filter-row" id="scoutFilters">
+      <button class="scout-filter-btn active" onclick="setScoutFilter('all')">All</button>
+      <button class="scout-filter-btn" onclick="setScoutFilter('Professional')">Professional</button>
+      <button class="scout-filter-btn" onclick="setScoutFilter('Semi-Pro')">Semi-Pro</button>
+      <button class="scout-filter-btn" onclick="setScoutFilter('Grassroots')">Grassroots</button>
+      <button class="scout-filter-btn" onclick="setScoutFilter('Junior')">Junior</button>
+      <button class="scout-filter-btn" onclick="setScoutFilter('Women')">Women</button>
+      <button class="scout-filter-btn" onclick="setScoutFilter('Disability')">Disability</button>
+      <button class="scout-filter-btn" onclick="setScoutFilter('Soccer School')">Soccer Schools</button>
+      <button class="scout-filter-btn" onclick="setScoutFilter('Walking Football')">Walking</button>
+      <button class="scout-filter-btn" onclick="setScoutFilter('Futsal')">Futsal</button>
+      <button class="scout-filter-btn" onclick="setScoutFilter('Veterans')">Veterans</button>
+      <button class="scout-filter-btn" onclick="setScoutFilter('University')">University</button>
+    </div>
+
+    <!-- Live Stats -->
+    <div class="scout-stats-row">
+      <div class="scout-stat">
+        <div class="scout-stat-label">Clubs in CRM</div>
+        <div class="scout-stat-value" id="scoutTotal">—</div>
+        <div class="scout-stat-sub" id="scoutTotalSub">loading...</div>
+      </div>
+      <div class="scout-stat">
+        <div class="scout-stat-label">Found This Run</div>
+        <div class="scout-stat-value" style="color:var(--accent)" id="scoutFound">0</div>
+        <div class="scout-stat-sub" id="scoutFoundSub">new clubs</div>
+      </div>
+      <div class="scout-stat">
+        <div class="scout-stat-label">Leagues Scanned</div>
+        <div class="scout-stat-value" style="color:var(--accent2)" id="scoutLeagues">0</div>
+        <div class="scout-stat-sub" id="scoutLeaguesSub">of <span id="scoutLeaguesTotal">0</span></div>
+      </div>
+      <div class="scout-stat">
+        <div class="scout-stat-label">Duplicates Skipped</div>
+        <div class="scout-stat-value" style="color:var(--accent4)" id="scoutDupes">0</div>
+        <div class="scout-stat-sub">already in CRM</div>
+      </div>
+      <div class="scout-stat">
+        <div class="scout-stat-label">Errors</div>
+        <div class="scout-stat-value" style="color:var(--accent3)" id="scoutErrors">0</div>
+        <div class="scout-stat-sub">will retry on resume</div>
+      </div>
+      <div class="scout-stat">
+        <div class="scout-stat-label">SERP Calls</div>
+        <div class="scout-stat-value" style="color:var(--muted)" id="scoutCalls">0</div>
+        <div class="scout-stat-sub" id="scoutCallsSub">API requests used</div>
+      </div>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="scout-progress-section">
+      <div class="scout-progress-title">Overall Progress</div>
+      <div class="scout-progress-bar-wrap">
+        <div class="scout-progress-bar" id="scoutProgressBar" style="width:0%"></div>
+      </div>
+      <div class="scout-progress-info">
+        <span id="scoutProgressPct">0%</span>
+        <span id="scoutProgressEta">—</span>
+      </div>
+    </div>
+
+    <!-- Currently Scanning -->
+    <div class="scout-current" id="scoutCurrent" style="display:none">
+      <div class="scout-current-spinner"></div>
+      <div class="scout-current-text">
+        Scanning <span class="scout-current-league" id="scoutCurrentLeague">—</span>
+        <br><span id="scoutCurrentDetail" style="color:var(--muted);font-size:11px">—</span>
+      </div>
+    </div>
+
+    <!-- Category Breakdown + Log -->
+    <div class="scout-grid">
+      <div class="scout-panel">
+        <div class="scout-panel-title">Category Breakdown <span class="scout-panel-count" id="scoutCatCount">—</span></div>
+        <div id="scoutCatList">
+          <div style="color:var(--muted);font-size:12px;padding:8px 0">Run the scout to see breakdown</div>
+        </div>
+      </div>
+      <div class="scout-panel">
+        <div class="scout-panel-title">Live Log <span class="scout-panel-count" id="scoutLogCount">0 entries</span></div>
+        <div class="scout-log" id="scoutLog">
+          <div class="scout-log-entry"><span class="scout-log-time">--:--</span> <span class="scout-log-info">Scout agent ready. Click Start to begin.</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
 <!-- DETAIL PANEL -->
 <div class="detail-panel" id="detailPanel">
   <div class="det-head">
@@ -608,13 +808,12 @@ tbody td:first-child { padding-left: 24px; }
 </div>
 
 <script>
-let CFG = { token: '', base: 'appLyjsSbOppAyR6I', table: 'tblYsO9wdvPMPs94P' };
+let CFG = { url: 'https://hbaxhbxqiwvmrtmwvmss.supabase.co', key: 'sb_publishable_x12l7gSwRtUTs8XPBcLm-A_mYmAKVIi', table: 'clubs' };
 let ALL = [];
 let LEAGUES = {};
 let ACTIVE = null;
 let FILTER = 'all';
 
-// Exact stages matching Airtable
 const STAGES = [
   'Not Contacted',
   'Emailed',
@@ -658,11 +857,58 @@ const STAGE_CLASS = {
   'Not Ready': 's0'
 };
 
+// Column name mapping — Supabase uses snake_case columns
+// We map them to the same keys the UI expects
+const COL = {
+  id: 'id',
+  club_name: 'club_name',
+  league_name: 'league_name',
+  contact_name: 'contact_name',
+  email: 'email',
+  number: 'number',
+  role: 'role',
+  sport: 'sport',
+  stage: 'stage',
+  est_value: 'est_value',
+  teams: 'teams',
+  linkedin: 'linkedin',
+  notes: 'notes',
+  created_at: 'created_at'
+};
+
+// Helper to get field from a Supabase row (tries snake_case and original Airtable-style names)
+function F(row, key) {
+  // Direct snake_case match
+  if (row[key] !== undefined) return row[key];
+  // Try common mappings
+  const map = {
+    'Club Name': 'club_name',
+    'League Name': 'league_name',
+    'Contact Name': 'contact_name',
+    'Email': 'email',
+    'Number': 'number',
+    'Role': 'role',
+    'Sport': 'sport',
+    'Stage': 'stage',
+    'Est Value': 'est_value',
+    'Teams': 'teams',
+    'LinkedIn': 'linkedin',
+    'Notes': 'notes'
+  };
+  if (map[key] && row[map[key]] !== undefined) return row[map[key]];
+  // Try case-insensitive match
+  const lk = key.toLowerCase().replace(/\s+/g, '_');
+  for (const k of Object.keys(row)) {
+    if (k.toLowerCase() === lk) return row[k];
+  }
+  return undefined;
+}
+
 function loadConfig() {
-  const s = localStorage.getItem('sportsCrmV4');
+  const s = localStorage.getItem('sportsCrmV5');
   if (s) {
     CFG = { ...CFG, ...JSON.parse(s) };
-    if (CFG.token) {
+    if (CFG.url && CFG.key) {
       document.getElementById('cfgOverlay').style.display = 'none';
       init();
     }
@@ -670,18 +916,18 @@ function loadConfig() {
 }
 
 function saveConfig() {
-  CFG.token = document.getElementById('cfgToken').value.trim();
-  CFG.base = document.getElementById('cfgBase').value.trim();
-  CFG.table = document.getElementById('cfgTable').value.trim();
-  if (!CFG.token) { alert('Please enter your Personal Access Token'); return; }
-  localStorage.setItem('sportsCrmV4', JSON.stringify(CFG));
+  CFG.url = document.getElementById('cfgUrl').value.trim().replace(/\/+$/, '');
+  CFG.key = document.getElementById('cfgKey').value.trim();
+  CFG.table = document.getElementById('cfgTable').value.trim() || 'clubs';
+  if (!CFG.url || !CFG.key) { alert('Please enter your Supabase URL and API key'); return; }
+  localStorage.setItem('sportsCrmV5', JSON.stringify(CFG));
   document.getElementById('cfgOverlay').style.display = 'none';
   init();
 }
 
 function showConfig() {
-  document.getElementById('cfgToken').value = CFG.token;
-  document.getElementById('cfgBase').value = CFG.base;
+  document.getElementById('cfgUrl').value = CFG.url;
+  document.getElementById('cfgKey').value = CFG.key;
   document.getElementById('cfgTable').value = CFG.table;
   document.getElementById('cfgOverlay').style.display = 'flex';
 }
@@ -690,26 +936,80 @@ function switchView(v) {
   document.querySelectorAll('.view').forEach(el => el.classList.remove('active'));
   document.querySelectorAll('.nav-tab').forEach(el => el.classList.remove('active'));
   document.getElementById('view-' + v).classList.add('active');
-  document.querySelectorAll('.nav-tab')[v === 'analytics' ? 0 : 1].classList.add('active');
+  const idx = v === 'analytics' ? 0 : v === 'database' ? 1 : 2;
+  document.querySelectorAll('.nav-tab')[idx].classList.add('active');
+  if (v === 'scout') scoutStats();
 }
 
+// Supabase REST API — fetch all rows with pagination
 async function fetchAll() {
-  let recs = [], offset = null;
-  do {
-    const url = `https://api.airtable.com/v0/${CFG.base}/${CFG.table}?pageSize=100${offset ? '&offset='+offset : ''}`;
-    const res = await fetch(url, { headers: { Authorization: `Bearer ${CFG.token}` } });
-    const data = await res.json();
-    if (data.error) throw new Error(data.error.message);
-    recs = recs.concat(data.records);
-    offset = data.offset;
-  } while (offset);
-  return recs;
+  const headers = {
+    'apikey': CFG.key,
+    'Authorization': `Bearer ${CFG.key}`,
+    'Content-Type': 'application/json',
+    'Prefer': 'count=exact'
+  };
+
+  // First get total count
+  const countRes = await fetch(`${CFG.url}/rest/v1/${CFG.table}?select=id&limit=1`, {
+    headers: { ...headers, 'Prefer': 'count=exact' }
+  });
+  if (!countRes.ok) {
+    const err = await countRes.json().catch(() => ({}));
+    throw new Error(err.message || err.hint || `HTTP ${countRes.status}`);
+  }
+  const totalCount = parseInt(countRes.headers.get('content-range')?.split('/')[1] || '0');
+
+  // Fetch in batches of 1000 (Supabase max)
+  let allRows = [];
+  const batchSize = 1000;
+  const fetches = [];
+
+  for (let offset = 0; offset < Math.max(totalCount, 1); offset += batchSize) {
+    fetches.push(
+      fetch(`${CFG.url}/rest/v1/${CFG.table}?select=*&offset=${offset}&limit=${batchSize}`, { headers })
+        .then(async res => {
+          if (!res.ok) {
+            const err = await res.json().catch(() => ({}));
+            throw new Error(err.message || `HTTP ${res.status}`);
+          }
+          return res.json();
+        })
+    );
+  }
+
+  const batches = await Promise.all(fetches);
+  for (const batch of batches) {
+    allRows = allRows.concat(batch);
+  }
+
+  return allRows;
 }
 
 async function init() {
   setFooter('Loading data...');
   try {
-    ALL = await fetchAll();
+    const rows = await fetchAll();
+    // Normalize rows into a common format the UI can use
+    ALL = rows.map(r => ({
+      id: r.id,
+      fields: {
+        'Club Name': F(r, 'club_name') || F(r, 'Club Name') || '',
+        'League Name': F(r, 'league_name') || F(r, 'League Name') || 'Unknown',
+        'Contact Name': F(r, 'contact_name') || F(r, 'Contact Name') || '',
+        'Email': F(r, 'email') || F(r, 'Email') || '',
+        'Number': F(r, 'number') || F(r, 'Number') || F(r, 'phone') || '',
+        'Role': F(r, 'role') || F(r, 'Role') || '',
+        'Sport': F(r, 'sport') || F(r, 'Sport') || 'Football',
+        'Stage': F(r, 'stage') || F(r, 'Stage') || 'Not Contacted',
+        'Est Value': parseFloat(F(r, 'est_value') || F(r, 'Est Value') || 0) || 0,
+        'Teams': F(r, 'teams') || F(r, 'Teams') || '',
+        'LinkedIn': F(r, 'linkedin') || F(r, 'LinkedIn') || '',
+        'Notes': F(r, 'notes') || F(r, 'Notes') || ''
+      },
+      createdTime: r.created_at || r.inserted_at || r.updated_at || ''
+    }));
+
     LEAGUES = {};
     ALL.forEach(r => {
       const l = r.fields['League Name'] || 'Unknown';
@@ -750,7 +1050,7 @@ function renderAnalytics() {
   document.getElementById('hHot').textContent = hotCount;
   document.getElementById('valBig').textContent = fmt(totalVal);
 
-  // PIPELINE - exact Airtable stages
+  // PIPELINE
   const counts = {};
   ALL.forEach(r => { const s = r.fields['Stage'] || 'Not Contacted'; counts[s] = (counts[s]||0)+1; });
 
@@ -985,18 +1285,39 @@ function closeDetail() {
 
 async function updateStage(id, stage) {
   try {
-    await fetch(`https://api.airtable.com/v0/${CFG.base}/${CFG.table}/${id}`, {
+    // Detect the column name for stage (snake_case or original)
+    const stageCol = 'stage';
+    const res = await fetch(`${CFG.url}/rest/v1/${CFG.table}?id=eq.${id}`, {
       method: 'PATCH',
-      headers: { Authorization: `Bearer ${CFG.token}`, 'Content-Type': 'application/json' },
-      body: JSON.stringify({ fields: { Stage: stage } })
+      headers: {
+        'apikey': CFG.key,
+        'Authorization': `Bearer ${CFG.key}`,
+        'Content-Type': 'application/json',
+        'Prefer': 'return=minimal'
+      },
+      body: JSON.stringify({ [stageCol]: stage })
     });
+    if (!res.ok) {
+      // Try with 'Stage' column name as fallback
+      const res2 = await fetch(`${CFG.url}/rest/v1/${CFG.table}?id=eq.${id}`, {
+        method: 'PATCH',
+        headers: {
+          'apikey': CFG.key,
+          'Authorization': `Bearer ${CFG.key}`,
+          'Content-Type': 'application/json',
+          'Prefer': 'return=minimal'
+        },
+        body: JSON.stringify({ 'Stage': stage })
+      });
+      if (!res2.ok) throw new Error('Update failed');
+    }
     const r = ALL.find(x=>x.id===id);
     if (r) r.fields['Stage'] = stage;
     renderTable();
     renderAnalytics();
     setFooter('Stage updated → ' + stage);
   } catch(e) {
-    setFooter('Update failed');
+    setFooter('Update failed: ' + e.message);
   }
 }
 
@@ -1005,6 +1326,633 @@ function setFooter(msg) {
 }
 
 loadConfig();
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// SCOUT AGENT — Club Discovery Engine
+// Runs entirely in-browser. Uses SERP API + writes to your Supabase CRM.
+// ═══════════════════════════════════════════════════════════════════════════════
+
+const SCOUT = {
+  running: false,
+  paused: false,
+  filter: 'all',
+  found: 0,
+  dupes: 0,
+  errors: 0,
+  calls: 0,
+  leaguesDone: 0,
+  leaguesTotal: 0,
+  existingClubs: new Set(),
+  startTime: null,
+  logEntries: [],
+  abortController: null,
+};
+
+// ─── SERP Key stored in localStorage ──────────────────────────────────────────
+function getSerpKey() {
+  return localStorage.getItem('sportsCrmSerpKey') || '';
+}
+function saveSerpKey() {
+  const key = document.getElementById('scoutSerpKey').value.trim();
+  if (!key) return;
+  localStorage.setItem('sportsCrmSerpKey', key);
+  scoutLog('info', 'SERP API key saved');
+}
+// Pre-fill from stored
+(function() {
+  const k = getSerpKey();
+  if (k) document.getElementById('scoutSerpKey').value = k;
+})();
+
+// ─── The complete UK football structure (inline) ──────────────────────────────
+// This is a condensed version of uk-football-structure.js for in-browser use.
+// Each entry: { id, league, category, level, region, country, searches[] }
+
+function buildScoutStructure() {
+  const S = [];
+
+  // Helper
+  const add = (id, league, cat, level, region, country, searches) =>
+    S.push({ id, league, category: cat, level, region, country, searches });
+
+  // ── ENGLAND PROFESSIONAL ──
+  add('eng-1-pl', 'Premier League', 'Professional', 1, 'England', 'England', ['Premier League 2024-25 clubs teams complete list all 20']);
+  add('eng-2-ch', 'EFL Championship', 'Professional', 2, 'England', 'England', ['EFL Championship 2024-25 all 24 clubs teams list']);
+  add('eng-3-l1', 'EFL League One', 'Professional', 3, 'England', 'England', ['EFL League One 2024-25 all clubs teams list']);
+  add('eng-4-l2', 'EFL League Two', 'Professional', 4, 'England', 'England', ['EFL League Two 2024-25 all clubs teams list']);
+
+  // ── NATIONAL LEAGUE ──
+  add('eng-5-nl', 'National League', 'Semi-Pro', 5, 'England', 'England', ['National League 2024-25 all clubs teams list']);
+  add('eng-6-nln', 'National League North', 'Semi-Pro', 6, 'North', 'England', ['National League North 2024-25 clubs list']);
+  add('eng-6-nls', 'National League South', 'Semi-Pro', 6, 'South', 'England', ['National League South 2024-25 clubs list']);
+
+  // ── STEP 3 ──
+  const step3 = [
+    ['Northern Premier League Premier Division', 'North'],
+    ['Southern League Premier Division South', 'South'],
+    ['Southern League Premier Division Central', 'Midlands'],
+    ['Isthmian League Premier Division', 'South East'],
+  ];
+  step3.forEach(([l, r]) => add('eng-7-' + l.slice(0,12).replace(/\s/g,''), l, 'Semi-Pro', 7, r, 'England', [`"${l}" clubs teams list 2024-25`]));
+
+  // ── STEP 4 ──
+  const step4 = [
+    ['Northern Premier League Division One East', 'North East'],
+    ['Northern Premier League Division One West', 'North West'],
+    ['Northern Premier League Division One Midlands', 'Midlands'],
+    ['Southern League Division One Central', 'Midlands'],
+    ['Southern League Division One South', 'South'],
+    ['Isthmian League Division One North', 'North London'],
+    ['Isthmian League Division One South Central', 'South'],
+    ['Isthmian League Division One South East', 'South East'],
+  ];
+  step4.forEach(([l, r]) => add('eng-8-' + l.slice(0,15).replace(/\s/g,''), l, 'Semi-Pro', 8, r, 'England', [`"${l}" clubs list`]));
+
+  // ── STEPS 5-6 ──
+  const step56 = [
+    'Combined Counties League', 'Eastern Counties League', 'Essex Senior League',
+    'Hellenic League', 'Midland Football League', 'North West Counties League',
+    'Northern Counties East League', 'Northern League', 'South West Peninsula League',
+    'Southern Combination League', 'Spartan South Midlands League', 'United Counties League',
+    'Wessex League', 'Western League', 'West Midlands Regional League',
+    'Anglian Combination', 'Central Midlands League', 'Hampshire League',
+    'Kent County League', 'Lancashire Amateur League', 'Leicestershire Senior League',
+    'Liverpool County Premier League', 'Manchester League', 'Middlesex County League',
+    'Nottinghamshire Senior League', 'Peterborough & District League',
+    'Reading League', 'Sheffield & District Senior League', 'Somerset County League',
+    'Staffordshire County Senior League', 'Suffolk & Ipswich League',
+    'Surrey Elite Intermediate League', 'Teesside League', 'Wearside League',
+    'West Cheshire League', 'West Lancashire League', 'West Yorkshire League',
+    'Wiltshire League', 'York League', 'Cambridgeshire County League',
+    'Dorset Premier League', 'East Berkshire League', 'Herts Senior County League',
+    'Mid Sussex League', 'North Berkshire League', 'Northamptonshire Combination',
+    'Oxfordshire Senior League', 'Southern Combination League',
+  ];
+  step56.forEach(l => add('eng-9-' + l.slice(0,20).replace(/\s/g,'-').toLowerCase(), l, 'Semi-Pro', 9, 'England', 'England', [`"${l}" clubs teams list all divisions`]));
+
+  // ── SUNDAY LEAGUES ──
+  const cities = ['London','Birmingham','Manchester','Leeds','Liverpool','Sheffield','Bristol','Newcastle','Nottingham','Leicester','Southampton','Brighton','Portsmouth','Plymouth','Sunderland','Wolverhampton','Coventry','Derby','Stoke-on-Trent','Reading','Oxford','Cambridge','Norwich','Ipswich','Luton','Milton Keynes','Northampton','Peterborough','Swindon','Gloucester','Exeter','Bournemouth','Cheltenham','Worcester','Hereford','Shrewsbury','Chester','Blackpool','Preston','Bolton','Wigan','Blackburn','Burnley','York','Hull','Doncaster','Barnsley','Rotherham','Huddersfield','Bradford','Halifax','Wakefield','Middlesbrough','Darlington','Hartlepool','Carlisle','Scarborough','Grimsby','Lincoln','Mansfield','Chesterfield','Crewe','Stockport','Oldham','Rochdale','Salford','Warrington','Colchester','Chelmsford','Southend','Stevenage','Watford','St Albans','High Wycombe','Slough','Basingstoke','Salisbury','Taunton','Yeovil','Torquay','Truro','Crawley','Hastings','Worthing','Guildford','Maidstone','Canterbury','Ashford','Medway'];
+  cities.forEach(c => add('eng-sun-' + c.toLowerCase().replace(/\s/g,'-'), c + ' Sunday League', 'Grassroots', 12, c, 'England', [`"${c}" sunday league football clubs teams`]));
+
+  // ── SCOTLAND ──
+  add('sco-1', 'Scottish Premiership', 'Professional', 1, 'Scotland', 'Scotland', ['Scottish Premiership 2024-25 clubs list']);
+  add('sco-2', 'Scottish Championship', 'Professional', 2, 'Scotland', 'Scotland', ['Scottish Championship 2024-25 clubs list']);
+  add('sco-3', 'Scottish League One', 'Professional', 3, 'Scotland', 'Scotland', ['Scottish League One 2024-25 clubs list']);
+  add('sco-4', 'Scottish League Two', 'Professional', 4, 'Scotland', 'Scotland', ['Scottish League Two 2024-25 clubs list']);
+  add('sco-5h', 'Highland Football League', 'Semi-Pro', 5, 'Scotland', 'Scotland', ['Highland Football League clubs list']);
+  add('sco-5l', 'Lowland Football League', 'Semi-Pro', 5, 'Scotland', 'Scotland', ['Lowland Football League clubs list']);
+  ['East of Scotland League', 'West of Scotland League', 'South of Scotland League', 'North Caledonian League'].forEach(l =>
+    add('sco-6-' + l.slice(0,10).replace(/\s/g,''), l, 'Semi-Pro', 6, 'Scotland', 'Scotland', [`"${l}" clubs teams list all divisions`])
+  );
+  ['Glasgow','Edinburgh','Dundee','Aberdeen','Inverness','Stirling','Perth','Kilmarnock','Ayr','Dumfries','Falkirk','Dunfermline','Paisley','Hamilton','Motherwell','East Kilbride','Livingston'].forEach(c =>
+    add('sco-am-' + c.toLowerCase(), c + ' Amateur Football', 'Grassroots', 10, c, 'Scotland', [`"${c}" amateur football clubs teams Scotland list`])
+  );
+
+  // ── WALES ──
+  add('wal-1', 'Cymru Premier', 'Professional', 1, 'Wales', 'Wales', ['Cymru Premier 2024-25 clubs list']);
+  add('wal-2n', 'Cymru North', 'Semi-Pro', 2, 'North Wales', 'Wales', ['Cymru North 2024-25 clubs list']);
+  add('wal-2s', 'Cymru South', 'Semi-Pro', 2, 'South Wales', 'Wales', ['Cymru South 2024-25 clubs list']);
+  ['Welsh Football League Division One','Welsh Football League Division Two','Welsh Football League Division Three','Welsh National League'].forEach((l,i) =>
+    add('wal-' + (3+i), l, i < 2 ? 'Semi-Pro' : 'Grassroots', 3+i, 'Wales', 'Wales', [`"${l}" clubs list`])
+  );
+  ['Gwent','South Wales','West Wales','North Wales','Mid Wales','Carmarthenshire','Pembrokeshire','Anglesey','Gwynedd','Wrexham','Flintshire'].forEach(a =>
+    add('wal-loc-' + a.toLowerCase().replace(/\s/g,'-'), a + ' Football League', 'Grassroots', 5, a, 'Wales', [`"${a}" football league clubs teams list Wales`])
+  );
+
+  // ── NORTHERN IRELAND ──
+  add('ni-1', 'NIFL Premiership', 'Professional', 1, 'Northern Ireland', 'Northern Ireland', ['NIFL Premiership 2024-25 clubs list']);
+  add('ni-2', 'NIFL Championship', 'Semi-Pro', 2, 'Northern Ireland', 'Northern Ireland', ['NIFL Championship clubs list']);
+  add('ni-3', 'NIFL Premier Intermediate League', 'Semi-Pro', 3, 'Northern Ireland', 'Northern Ireland', ['NIFL Premier Intermediate League clubs']);
+  add('ni-4', 'NI Intermediate League', 'Grassroots', 4, 'Northern Ireland', 'Northern Ireland', ['Northern Ireland Intermediate League football clubs']);
+  ['Belfast','Derry','Lisburn','Newry','Bangor','Craigavon','Ballymena','Coleraine','Omagh','Enniskillen','Dungannon','Larne','Antrim','Strabane'].forEach(c =>
+    add('ni-loc-' + c.toLowerCase(), c + ' & District Football', 'Grassroots', 6, c, 'Northern Ireland', [`"${c}" football clubs teams list Northern Ireland`])
+  );
+
+  // ── WOMEN'S ──
+  add('wom-wsl', "Women's Super League", 'Women', 1, 'England', 'England', ["Women's Super League WSL 2024-25 clubs list"]);
+  add('wom-wc', "Women's Championship", 'Women', 2, 'England', 'England', ["FA Women's Championship 2024-25 clubs list"]);
+  ['Div 1 North','Div 1 South','Div 2 North','Div 2 South East','Div 2 South West','Div 2 Midlands'].forEach((d,i) =>
+    add('wom-wnl-' + d.replace(/\s/g,'').toLowerCase(), "WNL " + d, 'Women', i < 2 ? 3 : 4, 'England', 'England', [`FA Women's National League ${d} clubs list`])
+  );
+  const counties = ['Bedfordshire','Berkshire','Birmingham','Buckinghamshire','Cambridgeshire','Cheshire','Cornwall','Derbyshire','Devon','Dorset','Durham','Essex','Gloucestershire','Hampshire','Herefordshire','Hertfordshire','Kent','Lancashire','Leicestershire','Lincolnshire','Liverpool','London','Manchester','Middlesex','Norfolk','Northamptonshire','Northumberland','Nottinghamshire','Oxfordshire','Sheffield','Shropshire','Somerset','Staffordshire','Suffolk','Surrey','Sussex','Wiltshire','Worcestershire','West Riding','North Riding','East Riding','Huntingdonshire','Westmorland','Cumberland'];
+  counties.forEach(c => add('wom-' + c.toLowerCase().replace(/\s/g,'-'), c + " Women's League", 'Women', 6, c, 'England', [`"${c}" women's football league clubs teams`, `"${c}" ladies football league clubs`]));
+  add('wom-sco1', 'SWPL 1', 'Women', 1, 'Scotland', 'Scotland', ["SWPL 1 Scottish Women's Premier League clubs"]);
+  add('wom-sco2', 'SWPL 2', 'Women', 2, 'Scotland', 'Scotland', ["SWPL 2 clubs list"]);
+  add('wom-scog', "Scottish Women's Football League", 'Women', 3, 'Scotland', 'Scotland', ["Scottish Women's Football League all divisions clubs"]);
+  add('wom-wal1', 'Adran Premier', 'Women', 1, 'Wales', 'Wales', ["Adran Premier Welsh Women's football clubs"]);
+  add('wom-wal2', 'Adran Leagues', 'Women', 2, 'Wales', 'Wales', ["Adran North Adran South Welsh Women's clubs"]);
+  add('wom-ni1', "NIFL Women's Premiership", 'Women', 1, 'Northern Ireland', 'Northern Ireland', ["NIFL Women's Premiership clubs"]);
+
+  // ── JUNIOR / YOUTH ──
+  add('jun-cat1', 'Category 1 Academies', 'Junior', 1, 'England', 'England', ['Premier League Category 1 academy clubs list']);
+  add('jun-cat2', 'Category 2 Academies', 'Junior', 2, 'England', 'England', ['EFL Category 2 academy clubs list']);
+  add('jun-cat3', 'Category 3 Academies', 'Junior', 3, 'England', 'England', ['Category 3 football academy clubs England list']);
+  counties.forEach(c => {
+    add('jun-' + c.toLowerCase().replace(/\s/g,'-') + '-y', c + ' FA Youth League', 'Junior', 5, c, 'England', [`"${c}" FA youth junior football clubs teams list`, `"${c}" youth football league clubs all divisions`]);
+    add('jun-' + c.toLowerCase().replace(/\s/g,'-') + '-m', c + ' FA Mini Soccer', 'Junior', 6, c, 'England', [`"${c}" mini soccer football clubs teams list`]);
+    add('jun-' + c.toLowerCase().replace(/\s/g,'-') + '-g', c + ' FA Girls League', 'Junior', 5, c, 'England', [`"${c}" girls youth football clubs teams list`]);
+  });
+  ['Glasgow','Edinburgh','Dundee','Aberdeen','Inverness','Fife','Ayrshire','Lanarkshire','Renfrewshire'].forEach(a =>
+    add('jun-sco-' + a.toLowerCase(), a + ' Youth Football', 'Junior', 5, a, 'Scotland', [`"${a}" youth junior football clubs Scotland list`])
+  );
+  ['South Wales','North Wales','West Wales','Cardiff','Swansea','Newport','Wrexham'].forEach(a =>
+    add('jun-wal-' + a.toLowerCase().replace(/\s/g,'-'), a + ' Youth Football', 'Junior', 5, a, 'Wales', [`"${a}" youth junior football clubs Wales list`])
+  );
+  ['Belfast','Derry','Antrim','Down','Tyrone','Armagh'].forEach(a =>
+    add('jun-ni-' + a.toLowerCase(), a + ' Youth Football', 'Junior', 5, a, 'Northern Ireland', [`"${a}" youth junior football clubs Northern Ireland`])
+  );
+
+  // ── DISABILITY ──
+  ['Powerchair Football','Blind Football','Deaf Football','Cerebral Palsy Football','Amputee Football','Frame Football','Down Syndrome Football','Learning Disability Football','Mental Health Football','Wheelchair Football','Pan-Disability Football','Partially Sighted Football'].forEach(t =>
+    add('dis-' + t.slice(0,12).replace(/\s/g,'-').toLowerCase(), t, 'Disability', 1, 'UK', 'England', [`${t} clubs UK list all teams`, `${t} league fixtures teams clubs`])
+  );
+  ['North West','North East','Yorkshire','East Midlands','West Midlands','East','London','South East','South West','Scotland','Wales','Northern Ireland'].forEach(r =>
+    add('dis-reg-' + r.toLowerCase().replace(/\s/g,'-'), r + ' Disability Football', 'Disability', 2, r, r === 'Scotland' ? 'Scotland' : r === 'Wales' ? 'Wales' : r === 'Northern Ireland' ? 'Northern Ireland' : 'England', [`"${r}" disability football clubs teams list`])
+  );
+
+  // ── SOCCER SCHOOLS ──
+  const ssCities = ['London','Birmingham','Manchester','Leeds','Liverpool','Sheffield','Bristol','Newcastle','Nottingham','Leicester','Southampton','Brighton','Portsmouth','Plymouth','Coventry','Derby','Reading','Oxford','Cambridge','Norwich','Ipswich','Milton Keynes','Northampton','Peterborough','Exeter','Bournemouth','Cheltenham','Worcester','Chester','Blackpool','Preston','Bolton','York','Hull','Middlesbrough','Lincoln','Colchester','Watford','Basingstoke','Salisbury','Taunton','Torquay','Truro','Crawley','Guildford','Maidstone','Canterbury','Glasgow','Edinburgh','Dundee','Aberdeen','Inverness','Cardiff','Swansea','Newport','Wrexham','Belfast','Derry','Lisburn'];
+  ssCities.forEach(c => add('ss-' + c.toLowerCase().replace(/\s/g,'-'), c + ' Soccer Schools', 'Soccer School', 0, c,
+    ['Glasgow','Edinburgh','Dundee','Aberdeen','Inverness'].includes(c) ? 'Scotland' : ['Cardiff','Swansea','Newport','Wrexham'].includes(c) ? 'Wales' : ['Belfast','Derry','Lisburn'].includes(c) ? 'Northern Ireland' : 'England',
+    [`"${c}" soccer school football academy children coaching`, `"${c}" football coaching kids junior academy`]
+  ));
+
+  // ── WALKING FOOTBALL ──
+  add('walk-nat', 'Walking Football Association', 'Walking Football', 1, 'England', 'England', ['Walking Football Association clubs list all UK', 'walking football clubs near me UK list']);
+  ['North West','North East','Yorkshire','East Midlands','West Midlands','East','London','South East','South West','Scotland','Wales','Northern Ireland'].forEach(r =>
+    add('walk-' + r.toLowerCase().replace(/\s/g,'-'), r + ' Walking Football', 'Walking Football', 2, r, r === 'Scotland' ? 'Scotland' : r === 'Wales' ? 'Wales' : r === 'Northern Ireland' ? 'Northern Ireland' : 'England', [`"${r}" walking football clubs list over 50`])
+  );
+
+  // ── FUTSAL ──
+  add('fut-nfs', 'National Futsal Series', 'Futsal', 1, 'England', 'England', ['National Futsal Series clubs teams list all']);
+  add('fut-fa', 'FA Futsal Leagues', 'Futsal', 2, 'England', 'England', ['FA Futsal League clubs teams England']);
+  ['London','Birmingham','Manchester','Leeds','Liverpool','Bristol','Newcastle','Nottingham','Leicester','Southampton','Glasgow','Edinburgh','Cardiff'].forEach(c =>
+    add('fut-' + c.toLowerCase(), c + ' Futsal', 'Futsal', 3, c, ['Glasgow','Edinburgh'].includes(c) ? 'Scotland' : c === 'Cardiff' ? 'Wales' : 'England', [`"${c}" futsal club team league`])
+  );
+
+  // ── VETERANS ──
+  add('vet-nat', 'Veterans Football UK', 'Veterans', 1, 'England', 'England', ['veterans over 35 football league clubs UK list all']);
+  ['London','Birmingham','Manchester','Leeds','Liverpool','Sheffield','Bristol','Newcastle','Nottingham','Leicester','Southampton','Brighton','Glasgow','Edinburgh','Cardiff','Belfast'].forEach(c =>
+    add('vet-' + c.toLowerCase(), c + ' Veterans Football', 'Veterans', 2, c, ['Glasgow','Edinburgh'].includes(c) ? 'Scotland' : c === 'Cardiff' ? 'Wales' : c === 'Belfast' ? 'Northern Ireland' : 'England', [`"${c}" veterans over 35 football club team league`])
+  );
+
+  // ── UNIVERSITY ──
+  add('uni-bucs', 'BUCS Football', 'University', 1, 'UK', 'England', ['BUCS university football clubs teams list all UK', 'British Universities football teams complete list']);
+
+  return S;
+}
+
+const SCOUT_STRUCTURE = buildScoutStructure();
+
+// ─── Logging ──────────────────────────────────────────────────────────────────
+function scoutLog(type, msg) {
+  const time = new Date().toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+  const cls = type === 'ok' ? 'scout-log-ok' : type === 'err' ? 'scout-log-err' : 'scout-log-info';
+  SCOUT.logEntries.unshift({ time, cls, msg });
+  if (SCOUT.logEntries.length > 200) SCOUT.logEntries.pop();
+
+  const el = document.getElementById('scoutLog');
+  el.innerHTML = SCOUT.logEntries.map(e =>
+    `<div class="scout-log-entry"><span class="scout-log-time">${e.time}</span> <span class="${e.cls}">${e.msg}</span></div>`
+  ).join('');
+  document.getElementById('scoutLogCount').textContent = SCOUT.logEntries.length + ' entries';
+}
+
+// ─── UI Updates ───────────────────────────────────────────────────────────────
+function scoutUpdateUI() {
+  document.getElementById('scoutFound').textContent = SCOUT.found.toLocaleString();
+  document.getElementById('scoutLeagues').textContent = SCOUT.leaguesDone;
+  document.getElementById('scoutLeaguesTotal').textContent = SCOUT.leaguesTotal;
+  document.getElementById('scoutDupes').textContent = SCOUT.dupes.toLocaleString();
+  document.getElementById('scoutErrors').textContent = SCOUT.errors;
+  document.getElementById('scoutCalls').textContent = SCOUT.calls;
+
+  const pct = SCOUT.leaguesTotal > 0 ? Math.round((SCOUT.leaguesDone / SCOUT.leaguesTotal) * 100) : 0;
+  document.getElementById('scoutProgressBar').style.width = pct + '%';
+  document.getElementById('scoutProgressPct').textContent = pct + '%';
+
+  // ETA
+  if (SCOUT.running && SCOUT.leaguesDone > 0 && SCOUT.startTime) {
+    const elapsed = (Date.now() - SCOUT.startTime) / 1000;
+    const perLeague = elapsed / SCOUT.leaguesDone;
+    const remaining = (SCOUT.leaguesTotal - SCOUT.leaguesDone) * perLeague;
+    const mins = Math.ceil(remaining / 60);
+    document.getElementById('scoutProgressEta').textContent = mins > 60 ? `~${Math.round(mins/60)}h ${mins%60}m remaining` : `~${mins}m remaining`;
+  }
+}
+
+function scoutSetStatus(status) {
+  const badge = document.getElementById('scoutBadge');
+  const text = document.getElementById('scoutBadgeText');
+  badge.className = 'scout-status-badge ' + status;
+  text.textContent = status.toUpperCase();
+
+  document.getElementById('scoutStartBtn').disabled = status === 'running';
+  document.getElementById('scoutPauseBtn').disabled = status !== 'running';
+  document.getElementById('scoutStopBtn').disabled = status === 'idle';
+  document.getElementById('scoutStartBtn').textContent = status === 'paused' ? 'Resume' : 'Start Scout';
+}
+
+// ─── Load existing clubs for dedup ────────────────────────────────────────────
+async function scoutLoadExisting() {
+  scoutLog('info', 'Loading existing clubs from CRM for dedup...');
+  SCOUT.existingClubs = new Set();
+
+  const countRes = await fetch(`${CFG.url}/rest/v1/${CFG.table}?select=id&limit=1`, {
+    headers: { 'apikey': CFG.key, 'Authorization': `Bearer ${CFG.key}`, 'Prefer': 'count=exact' }
+  });
+  const total = parseInt(countRes.headers.get('content-range')?.split('/')[1] || '0');
+  document.getElementById('scoutTotal').textContent = total.toLocaleString();
+  document.getElementById('scoutTotalSub').textContent = 'in database';
+
+  for (let offset = 0; offset < total; offset += 1000) {
+    const res = await fetch(`${CFG.url}/rest/v1/${CFG.table}?select=club_name,league_name&offset=${offset}&limit=1000`, {
+      headers: { 'apikey': CFG.key, 'Authorization': `Bearer ${CFG.key}` }
+    });
+    if (res.ok) {
+      const rows = await res.json();
+      for (const r of rows) {
+        SCOUT.existingClubs.add(`${(r.club_name||'').toLowerCase().trim()}||${(r.league_name||'').toLowerCase().trim()}`);
+      }
+    }
+  }
+
+  scoutLog('ok', `Loaded ${SCOUT.existingClubs.size.toLocaleString()} existing clubs for dedup`);
+}
+
+// ─── SERP API call ────────────────────────────────────────────────────────────
+async function scoutSerpSearch(query) {
+  const key = getSerpKey();
+  if (!key) throw new Error('No SERP API key');
+
+  const params = new URLSearchParams({ api_key: key, q: query, num: '100', gl: 'gb', hl: 'en' });
+  const res = await fetch(`https://serpapi.com/search.json?${params}`, { signal: SCOUT.abortController?.signal });
+  SCOUT.calls++;
+  if (!res.ok) throw new Error(`SERP ${res.status}`);
+  return res.json();
+}
+
+// ─── Extract clubs from SERP results ──────────────────────────────────────────
+const SCOUT_BLACKLIST = new Set(['premier league','championship','national league','football association','full time','wikipedia','bbc sport','sky sports','the guardian','the telegraph','the athletic','football league','league table','transfer news','match report']);
+
+function scoutExtract(serpData, entry) {
+  const clubs = [];
+  const seen = new Set();
+  const results = serpData.organic_results || [];
+
+  for (const r of results) {
+    const text = `${r.title || ''} ${r.snippet || ''}`;
+    const link = r.link || '';
+
+    const patterns = [
+      /\b([A-Z][a-zA-Z\s&'.()-]{1,42}(?:FC|A\.?F\.?C\.?|United|City|Town|Rovers|Wanderers|Athletic|Rangers|Albion|Hotspur|Wednesday|Forest|Orient|Palace|Argyle|Harriers|Stanley|Alexandra|Borough|Academicals|Thistle|Celtic|Hearts|Hibs|Swifts|Dynamo|Casuals|Corinthians))\b/g,
+      /\b([A-Z][a-zA-Z\s&'.()-]{1,42}(?:Juniors|Youth|Colts|Boys|Girls|Minors|Academy|Under[-\s]?\d+s?))\b/g,
+      /\b([A-Z][a-zA-Z\s&'.()-]{1,42}(?:Ladies|Women|Girls)(?:\s+FC)?)\b/g,
+      /\b([A-Z][a-zA-Z\s&'.()-]{1,42}(?:Football Club|Sports Club|Soccer Club))\b/g,
+    ];
+
+    if (entry.category === 'Soccer School') {
+      patterns.push(/\b([A-Z][a-zA-Z\s&'.()-]{1,42}(?:Soccer School|Football Academy|Football School|Coaching Academy|Soccer Academy))\b/gi);
+    }
+    if (entry.category === 'Disability') {
+      patterns.push(/\b([A-Z][a-zA-Z\s&'.()-]{1,42}(?:Powerchair|Blind|Deaf|Amputee|Frame|Wheelchair)(?:\s+Football)?(?:\s+Club)?)\b/g);
+    }
+    if (entry.category === 'Walking Football') {
+      patterns.push(/\b([A-Z][a-zA-Z\s&'.()-]{1,42}Walking Football(?:\s+Club)?)\b/g);
+    }
+
+    for (const pat of patterns) {
+      for (const m of text.matchAll(pat)) {
+        let name = m[1].trim().replace(/\s+/g, ' ').replace(/^(?:The|A)\s+/i, '');
+        if (name.length < 3 || name.length > 55) continue;
+        if (SCOUT_BLACKLIST.has(name.toLowerCase())) continue;
+        if (/^(This|That|Their|These|From|With|About|How|What|When|Where|Which|Who|Why|Our|Your|All|New|Top|Best|Most)\s/i.test(name)) continue;
+        if (/^\d{4}/.test(name)) continue;
+        if (/\b(league|cup|trophy|season|division|round|match|final|semi|quarter)\s*$/i.test(name)) continue;
+
+        const key = name.toLowerCase();
+        if (!seen.has(key)) {
+          seen.add(key);
+          clubs.push({
+            club_name: name,
+            league_name: entry.league,
+            sport: 'Football',
+            category: entry.category,
+            pyramid_level: entry.level,
+            region: entry.region,
+            country: entry.country,
+            source: 'serp_api',
+            source_url: link,
+            stage: 'Not Contacted',
+            est_value: 0
+          });
+        }
+      }
+    }
+
+    // Title-based extraction for soccer schools
+    if (entry.category === 'Soccer School') {
+      const tm = (r.title || '').match(/^(.+?(?:Soccer|Football)\s*(?:School|Academy|Coaching))/i);
+      if (tm) {
+        const name = tm[1].trim();
+        const key = name.toLowerCase();
+        if (name.length > 3 && name.length < 55 && !seen.has(key)) {
+          seen.add(key);
+          clubs.push({ club_name: name, league_name: entry.league, sport: 'Football', category: 'Soccer School', pyramid_level: 0, region: entry.region, country: entry.country, source: 'serp_api', source_url: link, stage: 'Not Contacted', est_value: 0 });
+        }
+      }
+    }
+  }
+  return clubs;
+}
+
+// ─── Upsert to Supabase ──────────────────────────────────────────────────────
+async function scoutUpsert(clubs) {
+  if (!clubs.length) return 0;
+  let inserted = 0;
+  for (let i = 0; i < clubs.length; i += 200) {
+    const batch = clubs.slice(i, i + 200);
+    try {
+      const res = await fetch(`${CFG.url}/rest/v1/${CFG.table}`, {
+        method: 'POST',
+        headers: { 'apikey': CFG.key, 'Authorization': `Bearer ${CFG.key}`, 'Content-Type': 'application/json', 'Prefer': 'resolution=merge-duplicates,return=representation' },
+        body: JSON.stringify(batch)
+      });
+      if (res.ok) { const d = await res.json(); inserted += d.length; }
+      else {
+        for (const c of batch) {
+          try {
+            const r2 = await fetch(`${CFG.url}/rest/v1/${CFG.table}`, { method: 'POST', headers: { 'apikey': CFG.key, 'Authorization': `Bearer ${CFG.key}`, 'Content-Type': 'application/json', 'Prefer': 'resolution=merge-duplicates,return=minimal' }, body: JSON.stringify(c) });
+            if (r2.ok) inserted++;
+          } catch {}
+        }
+      }
+    } catch (e) { scoutLog('err', 'Upsert error: ' + e.message); }
+  }
+  return inserted;
+}
+
+// ─── Scout state persistence ──────────────────────────────────────────────────
+function scoutLoadState() {
+  const s = localStorage.getItem('scoutState');
+  return s ? JSON.parse(s) : { completed: [] };
+}
+function scoutSaveState(state) {
+  localStorage.setItem('scoutState', JSON.stringify(state));
+}
+
+// ─── Category breakdown ───────────────────────────────────────────────────────
+function scoutUpdateCategories(clubs) {
+  const cats = {};
+  // Count from existing + new
+  for (const c of clubs) {
+    const cat = c.category || 'Unknown';
+    cats[cat] = (cats[cat] || 0) + 1;
+  }
+
+  const el = document.getElementById('scoutCatList');
+  const total = Object.values(cats).reduce((s, v) => s + v, 0);
+  document.getElementById('scoutCatCount').textContent = total.toLocaleString() + ' clubs found this run';
+
+  el.innerHTML = Object.entries(cats)
+    .sort((a, b) => b[1] - a[1])
+    .map(([cat, count]) => {
+      const pct = total > 0 ? (count / total * 100) : 0;
+      return `<div class="scout-cat-row">
+        <span class="scout-cat-name">${cat}</span>
+        <span class="scout-cat-nums">${count.toLocaleString()}</span>
+      </div>
+      <div class="scout-cat-bar"><div class="scout-cat-bar-fill" style="width:${pct}%"></div></div>`;
+    }).join('');
+}
+
+// ─── Stats (no scraping, just counts) ─────────────────────────────────────────
+async function scoutStats() {
+  try {
+    const countRes = await fetch(`${CFG.url}/rest/v1/${CFG.table}?select=id&limit=1`, {
+      headers: { 'apikey': CFG.key, 'Authorization': `Bearer ${CFG.key}`, 'Prefer': 'count=exact' }
+    });
+    if (!countRes.ok) return;
+    const total = parseInt(countRes.headers.get('content-range')?.split('/')[1] || '0');
+    document.getElementById('scoutTotal').textContent = total.toLocaleString();
+
+    // Category counts
+    const catRes = await fetch(`${CFG.url}/rest/v1/${CFG.table}?select=category&limit=50000`, {
+      headers: { 'apikey': CFG.key, 'Authorization': `Bearer ${CFG.key}` }
+    });
+    if (catRes.ok) {
+      const rows = await catRes.json();
+      const cats = {};
+      for (const r of rows) cats[r.category || 'Unknown'] = (cats[r.category || 'Unknown'] || 0) + 1;
+      const el = document.getElementById('scoutCatList');
+      document.getElementById('scoutCatCount').textContent = total.toLocaleString() + ' total in CRM';
+      el.innerHTML = Object.entries(cats).sort((a, b) => b[1] - a[1]).map(([cat, count]) => {
+        const pct = total > 0 ? (count / total * 100) : 0;
+        return `<div class="scout-cat-row"><span class="scout-cat-name">${cat}</span><span class="scout-cat-nums">${count.toLocaleString()} (${pct.toFixed(1)}%)</span></div><div class="scout-cat-bar"><div class="scout-cat-bar-fill" style="width:${pct}%"></div></div>`;
+      }).join('');
+    }
+  } catch (e) {
+    scoutLog('err', 'Stats error: ' + e.message);
+  }
+}
+
+// ─── Filters ──────────────────────────────────────────────────────────────────
+function setScoutFilter(cat) {
+  SCOUT.filter = cat;
+  document.querySelectorAll('.scout-filter-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+  scoutLog('info', cat === 'all' ? 'Filter: All categories' : `Filter: ${cat} only`);
+}
+
+// ─── Controls ─────────────────────────────────────────────────────────────────
+async function scoutStart() {
+  if (SCOUT.running && SCOUT.paused) {
+    SCOUT.paused = false;
+    scoutSetStatus('running');
+    scoutLog('info', 'Resumed');
+    return;
+  }
+  if (SCOUT.running) return;
+
+  const serpKey = getSerpKey();
+  if (!serpKey) {
+    scoutLog('err', 'Enter your SERP API key first');
+    return;
+  }
+
+  SCOUT.running = true;
+  SCOUT.paused = false;
+  SCOUT.found = 0;
+  SCOUT.dupes = 0;
+  SCOUT.errors = 0;
+  SCOUT.calls = 0;
+  SCOUT.leaguesDone = 0;
+  SCOUT.startTime = Date.now();
+  SCOUT.abortController = new AbortController();
+
+  scoutSetStatus('running');
+  scoutLog('info', 'Scout agent starting...');
+
+  // Load existing for dedup
+  await scoutLoadExisting();
+
+  // Get state
+  const state = scoutLoadState();
+
+  // Filter structure by category
+  let entries = [...SCOUT_STRUCTURE];
+  if (SCOUT.filter !== 'all') {
+    entries = entries.filter(e => e.category === SCOUT.filter);
+  }
+
+  // Skip completed
+  const pending = entries.filter(e => !state.completed.includes(e.id));
+  SCOUT.leaguesTotal = pending.length;
+  SCOUT.leaguesDone = entries.length - pending.length;
+
+  scoutLog('info', `${pending.length} leagues to scan (${state.completed.length} already done)`);
+  scoutUpdateUI();
+
+  document.getElementById('scoutCurrent').style.display = 'flex';
+  const allFoundClubs = [];
+
+  for (let i = 0; i < pending.length; i++) {
+    // Check pause/stop
+    while (SCOUT.paused) {
+      await new Promise(r => setTimeout(r, 500));
+    }
+    if (!SCOUT.running) break;
+
+    const entry = pending[i];
+    document.getElementById('scoutCurrentLeague').textContent = entry.league;
+    document.getElementById('scoutCurrentDetail').textContent = `${entry.category} | ${entry.country} | Level ${entry.level}`;
+
+    let entryClubs = [];
+
+    for (const query of entry.searches) {
+      if (!SCOUT.running) break;
+
+      try {
+        const serpData = await scoutSerpSearch(query);
+        const clubs = scoutExtract(serpData, entry);
+
+        // Dedup against existing
+        const newClubs = clubs.filter(c => {
+          const key = `${c.club_name.toLowerCase().trim()}||${(c.league_name||'').toLowerCase().trim()}`;
+          if (SCOUT.existingClubs.has(key)) { SCOUT.dupes++; return false; }
+          SCOUT.existingClubs.add(key);
+          return true;
+        });
+
+        entryClubs.push(...newClubs);
+
+        // Rate limit
+        await new Promise(r => setTimeout(r, 1500));
+
+      } catch (e) {
+        if (e.name === 'AbortError') break;
+        SCOUT.errors++;
+        scoutLog('err', `${entry.league}: ${e.message}`);
+        if (e.message.includes('429')) {
+          scoutLog('info', 'Rate limited — waiting 60s...');
+          await new Promise(r => setTimeout(r, 60000));
+        } else {
+          await new Promise(r => setTimeout(r, 3000));
+        }
+      }
+    }
+
+    // Dedup within entry
+    const uniqueMap = new Map();
+    for (const c of entryClubs) {
+      const k = c.club_name.toLowerCase().trim();
+      if (!uniqueMap.has(k)) uniqueMap.set(k, c);
+    }
+    const unique = [...uniqueMap.values()];
+
+    // Upsert
+    if (unique.length > 0) {
+      const inserted = await scoutUpsert(unique);
+      SCOUT.found += inserted;
+      allFoundClubs.push(...unique);
+      scoutLog('ok', `${entry.league}: +${inserted} clubs`);
+    } else {
+      scoutLog('info', `${entry.league}: no new clubs`);
+    }
+
+    SCOUT.leaguesDone++;
+    state.completed.push(entry.id);
+    scoutSaveState(state);
+    scoutUpdateUI();
+    scoutUpdateCategories(allFoundClubs);
+  }
+
+  // Done
+  SCOUT.running = false;
+  document.getElementById('scoutCurrent').style.display = 'none';
+  scoutSetStatus('done');
+  scoutLog('ok', `COMPLETE! ${SCOUT.found.toLocaleString()} new clubs added. ${SCOUT.dupes.toLocaleString()} duplicates skipped.`);
+
+  // Update main CRM totals
+  await refreshData();
+}
+
+function scoutPause() {
+  if (!SCOUT.running) return;
+  SCOUT.paused = !SCOUT.paused;
+  scoutSetStatus(SCOUT.paused ? 'paused' : 'running');
+  scoutLog('info', SCOUT.paused ? 'Paused' : 'Resumed');
+}
+
+function scoutStop() {
+  SCOUT.running = false;
+  SCOUT.paused = false;
+  if (SCOUT.abortController) SCOUT.abortController.abort();
+  document.getElementById('scoutCurrent').style.display = 'none';
+  scoutSetStatus('idle');
+  scoutLog('info', 'Stopped. Progress saved — click Start to resume.');
+}
+
 </script>
 </body>
 </html>

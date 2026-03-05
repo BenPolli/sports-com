@@ -1,0 +1,19 @@
+{
+  "name": "sports-crm",
+  "version": "1.0.0",
+  "description": "UK Football Pyramid CRM with Supabase backend",
+  "scripts": {
+    "scrape": "node scraper.js",
+    "scrape:resume": "node scraper.js --resume",
+    "scrape:junior": "node scraper.js --category junior",
+    "scrape:women": "node scraper.js --category women",
+    "scrape:disability": "node scraper.js --category disability",
+    "scrape:grassroots": "node scraper.js --category grassroots",
+    "scrape:pro": "node scraper.js --category professional",
+    "scrape:semipro": "node scraper.js --category semi-pro",
+    "scrape:schools": "node scraper.js --category \"soccer school\""
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7"
+  }
+}
